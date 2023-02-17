@@ -1,6 +1,8 @@
-# Example of reproducible research workflow 
+# Airbnb New Year's Eve 
 
-This is a basic example repository using Gnu make for a reproducible research workflow, as described in detail here: [tilburgsciencehub.com](http://tilburgsciencehub.com/). 
+Welcome to our research project! Our research aims to answer the following research question:
+
+What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 The main aim of this to have a basic structure, which can be easily adjusted to use in an actual project.  In this example project, the following is done: 
 1. Download and prepare data
