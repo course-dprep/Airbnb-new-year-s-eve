@@ -16,6 +16,11 @@ We chose the capital cities:
 
 ## Motivation
 
+## Method and results
+
+## Conclusion
+
+## Repository overview
 
 
 The main aim of this to have a basic structure, which can be easily adjusted to use in an actual project.  In this example project, the following is done: 
@@ -31,6 +36,11 @@ The main aim of this to have a basic structure, which can be easily adjusted to 
 - For the `makefile` to work, R, Gnu make and the TeX distribution (specifically `pdflatex`) need to be made available in the system path 
 - Detailed installation instructions can be found here: [tilburgsciencehub.com](http://tilburgsciencehub.com/)
 
+## Running instructions
+
+## More resources
+
+## About
 
 ## Notes
 - `make clean` removes all unncessary temporary files. 
