@@ -4,6 +4,18 @@ Welcome to our research project! Our research aims to answer the following resea
 
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
+We will look at the variables:
+- Price
+- Availability of airbnb’s
+
+We chose the capital cities:
+- London
+- Paris
+- Amsterdam
+- Rome
+
+
+
 The main aim of this to have a basic structure, which can be easily adjusted to use in an actual project.  In this example project, the following is done: 
 1. Download and prepare data
 2. Run some analysis
