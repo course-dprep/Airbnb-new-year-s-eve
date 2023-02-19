@@ -17,7 +17,7 @@ We chose the capital cities:
 ## Motivation
 
 ## Method and Results
-Inside Airbnb provided the information needed for this research project. In order to conduct this study, we examined data beginning two weeks before New Year's Eve 2022 (December 17) and ending two weeks after New Year's Eve 2022 (January 14th). To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
+Inside Airbnb provided the information needed for this research project. In order to conduct this study, we examined data beginning two weeks before New Year's Eve 2022 (December 17) and ending two weeks after New Year's Eve 2022 (January 14th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
 
 
 ![image](https://user-images.githubusercontent.com/122876103/219945498-c7cecd56-56a0-4293-b8db-7a66a29415fe.png)
@@ -32,7 +32,8 @@ Possible research methods:
 
 Possible variables: 
 
-![image](https://user-images.githubusercontent.com/122876103/219945677-11b51c94-78bf-4ed9-8fb3-dd68d2c15122.png)
+![image](https://user-images.githubusercontent.com/122876103/219945707-b1d39c4c-32af-409f-8796-d8b4500c7243.png)
+
 
 In order to determine whether the variations in prices may be caused by the day of the week on which it is New Year’s Eve, we can additionally add a control variable (such as weekdays).
 
