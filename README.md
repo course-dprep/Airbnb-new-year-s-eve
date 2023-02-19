@@ -32,7 +32,8 @@ Possible research methods:
 
 Possible variables: 
 
-![image](https://user-images.githubusercontent.com/122876103/219945521-6f2835ad-6878-4418-baa9-38ab4ef85b4b.png)
+![image](https://user-images.githubusercontent.com/122876103/219945646-12656639-14e6-4b4d-a8e6-98571e0afeb0.png)
+
 
 In order to determine whether the variations in prices may be caused by the day of the week on which it is New Year’s Eve, we can additionally add a control variable (such as weekdays).
 
