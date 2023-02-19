@@ -2,7 +2,7 @@
 
 Welcome to our research project! Our research aims to answer the following research question:
 
-What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
+**What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?**
 
 We will look at the variables:
 - Price
