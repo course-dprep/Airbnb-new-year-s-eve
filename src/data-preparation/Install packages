@@ -1,0 +1,8 @@
+install.packages("readr") # read text (csv) data
+install.packages("dplyr") # data management
+install.packages("ggplot2") # different types of plots
+install.packages('tidyverse') # transform and present data
+install.packages('ggpubr') # data visualization
+install.packages('car') # provide functions that are applied to a fitted regression model and perform additional calculations 
+install.packages('scales') # provides the internal scaling infrastructure used by ggplot2
+install.packages('stargazer') # create tables to represent regression outputs
