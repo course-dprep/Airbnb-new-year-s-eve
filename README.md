@@ -4,17 +4,13 @@ Welcome to our research project! Our research aims to answer the following resea
 
 **What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?**
 
-We will look at the variables:
-- Price
-- Availability of airbnb’s
-
-We chose the capital cities:
-- London
-- Paris
-- Amsterdam
-- Rome
-
 ## Motivation
+In this study, the effect of New Year’s eve on Airbnb listings is analyzed across multiple capital cities in Europe. We chose the cities London, Paris, Amsterdam, and Rome in order to measure if New Year’s eve has a different influence per city on the Airbnb accommodations. Therefore, we will look at the price of the listings and the availability of airbnb’s, so the number of booked/not booked accommodations.
+
+We chose New Year’s eve since it is a day that is celebrated across the world and happens each yar on the same date. We wanted to compare more cities throughout Europe, rather than just a few cities in the netherlands. Moreover, we also found it important that the cities are comparable in size/population, expensiveness etc so that this could not influence the results. Therefore, we decided to only choose a few capital cities in Europe. Another important part for choosing this event was that the data is available for before, during, and after the event which we checked before choosing this research and those specific cities.
+
+The research question for our study is: 
+What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 ## Method and Results
 Inside Airbnb provided the information needed for this research project. In order to conduct this study, we examined data beginning two weeks before New Year's Eve 2022 (December 17) and ending two weeks after New Year's Eve 2022 (January 14th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
