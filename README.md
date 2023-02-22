@@ -39,7 +39,7 @@ To build a new dataset, the listing and calendar datasets of insideairbnb are co
 
 ## Repository overview
 
-The directoru structure is as follow:
+The directory structure is as follow:
 ```
 ├── .github
 ├── src
