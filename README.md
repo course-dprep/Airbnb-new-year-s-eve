@@ -1,15 +1,15 @@
 # Airbnb New Year's Eve 
 
-Welcome to our research project! Our research aims to answer the following research question:
+Welcome to our research project!
 
-**What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?**
+![image](https://user-images.githubusercontent.com/123902060/220652672-82bcdd9e-0f1a-4cfe-bdeb-f8dfcbed94f1.png)
 
 ## Motivation
 In this study, the effect of New Year’s eve on Airbnb listings is analyzed across multiple capital cities in Europe. We chose the cities London, Paris, Amsterdam, and Rome in order to measure if New Year’s eve has a different influence per city on the Airbnb accommodations. Therefore, we will look at the price of the listings and the availability of airbnb’s, so the number of booked/not booked accommodations.
 
 We chose New Year’s eve since it is a day that is celebrated across the world and happens each yar on the same date. We wanted to compare more cities throughout Europe, rather than just a few cities in the netherlands. Moreover, we also found it important that the cities are comparable in size/population, expensiveness etc so that this could not influence the results. Therefore, we decided to only choose a few capital cities in Europe. Another important part for choosing this event was that the data is available for before, during, and after the event which we checked before choosing this research and those specific cities.
 
-The research question for our study is: 
+### Research Question
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 ## Method and Results
