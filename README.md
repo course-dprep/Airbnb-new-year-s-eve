@@ -13,7 +13,7 @@ We chose New Year’s eve since it is a day that is celebrated across the world 
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 ## Method and Results
-Inside Airbnb provided the information needed for this research project. In order to conduct this study, we examined data beginning two weeks before New Year's Eve 2022 (December 17) and ending two weeks after New Year's Eve 2022 (January 14th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
+Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the information needed for this research project. In order to conduct this study, we examined data beginning two weeks before New Year's Eve 2022 (December 17) and ending two weeks after New Year's Eve 2022 (January 14th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
 
 
 ![image](https://user-images.githubusercontent.com/122876103/219945498-c7cecd56-56a0-4293-b8db-7a66a29415fe.png)
@@ -39,6 +39,39 @@ To build a new dataset, the listing and calendar datasets of insideairbnb are co
 
 ## Repository overview
 
+The directoru structure is as follow:
+```
+├── .github
+├── src
+|   ├── analysis
+|       ├── analyze.R
+|       ├── graph.R
+|       ├── makefile
+|   ├── data-preparation
+|       ├── clean_data.R
+|       ├── download_data.R
+|       ├── makefile
+|       ├── merge_data.R
+├── data
+├── gen
+|   ├── output
+|       ├── graph
+|          ├── London
+|          ├── Amsterdam
+|          ├── Paris
+           ├── Rome
+|   ├── temp      
+|          ├── London
+|          ├── Amsterdam
+|          ├── Paris
+           ├── Rome
+├── .gitignore
+├── README.md
+├── RMarkdown.Rmd
+└── Makefile
+
+```
+
 
 The main aim of this to have a basic structure, which can be easily adjusted to use in an actual project.  In this example project, the following is done: 
 1. Download and prepare data
@@ -55,9 +88,21 @@ The main aim of this to have a basic structure, which can be easily adjusted to 
 
 ## Running instructions
 
+All of the data, analysis and plots can be run using the main makefile. R will make sure the proper packages will be installed if necessary. To make the main makefile run, Windows OS users will have to install [Make](https://gnuwin32.sourceforge.net/packages/make.htm). For Mac and Linux OS users, this will automatically be installed.When Make is installed, it is possible to run the makefile in RStudio. 
+
+First, type "make -n" in the Terminal. R wil then show you everything it will run. If you type in "make", R wil run all the code. This can take some time. When R is done, all the output will be generated.
+
 ## More resources
 
 ## About
+
+This repository was created as a part of the Data Preparation and Workflow Managemant course in the Marketing Analytics Master of Tilburg University. The following students contributed to the creation of this repository:
+
+*Fleur Le Mire
+Mariella Van Erve
+Nishtha Staice
+Yi Ting Tsai
+Hilal Nur Turer
 
 ## Notes
 - `make clean` removes all unncessary temporary files. 
