@@ -13,7 +13,7 @@ We chose New Year’s eve since it is a day that is celebrated across the world 
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 ## Method and Results
-Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the information needed for this research project. In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 27) and ending five days after New Year's Eve 2022 (January 5th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
+Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the information needed for this research project. In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 27th) and ending five days after New Year's Eve 2022 (January 5th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
 
 
 ![image](https://user-images.githubusercontent.com/122876103/219945498-c7cecd56-56a0-4293-b8db-7a66a29415fe.png)
