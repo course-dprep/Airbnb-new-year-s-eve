@@ -50,9 +50,6 @@ list_ams_filtered <- list_ams_filtered %>%
 list_rom_filtered <- list_rom_filtered %>% 
   rename(listing_id = id)
 
-
-
-
 ## Cleaning the calender file ##
 # Rename variable #  
 calendar_lon_filtered <- calendar_lon_filtered %>% 
@@ -64,10 +61,25 @@ calendar_ams_filtered <- calendar_ams_filtered %>%
 calendar_rom_filtered <- calendar_rom_filtered %>% 
   rename(booked = available)
 
+# Change type of date to a date 
+calendar_lon_filtered <- calendar_lon_filtered %>% group_by(date) %>% mutate(date = as.Date(date))
+calendar_par_filtered <- calendar_par_filtered %>% group_by(date) %>% mutate(date = as.Date(date))
+calendar_ams_filtered <- calendar_ams_filtered %>% group_by(date) %>% mutate(date = as.Date(date))
+calendar_rom_filtered <- calendar_rom_filtered %>% group_by(date) %>% mutate(date = as.Date(date))
+
+# Filter for time period (two-weeks before & after Valentine's day)
+calendar_lon_filtered2 <- calendar_lon_filtered[calendar_lon_filtered$date >= "2022-12-26" & calendar_lon_filtered$date <= "2023-01-05", ]
+calendar_par_filtered2 <- calendar_par_filtered[calendar_par_filtered$date >= "2022-12-26" & calendar_par_filtered$date <= "2023-01-05", ]
+calendar_ams_filtered2 <- calendar_ams_filtered[calendar_ams_filtered$date >= "2022-12-26" & calendar_ams_filtered$date <= "2023-01-05", ]
+calendar_rom_filtered2 <- calendar_rom_filtered[calendar_rom_filtered$date >= "2022-12-26" & calendar_rom_filtered$date <= "2023-01-05", ]
+
 # Booked as a dummy variable 
 calendar_lon_filtered$booked <- ifelse(calendar_lon_filtered$booked=='FALSE',1,0)
 calendar_par_filtered$booked <- ifelse(calendar_par_filtered$booked=='FALSE',1,0)
 calendar_ams_filtered$booked <- ifelse(calendar_ams_filtered$booked=='FALSE',1,0)
 calendar_rom_filtered$booked <- ifelse(calendar_rom_filtered$booked=='FALSE',1,0)
+
+
+
 
 
