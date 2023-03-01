@@ -21,7 +21,7 @@ Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the
 
 ![image](https://user-images.githubusercontent.com/122876103/219945707-b1d39c4c-32af-409f-8796-d8b4500c7243.png)
 
-To build a new dataset, the listing and calendar datasets of insideairbnb are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it. Regression analysis can be used with this cleaned-up dataset to analyze data that is relevant to our research questions.
+To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it. Regression analysis can be used with this cleaned-up dataset to analyze data that is relevant to our research questions.
 
 ## Conclusion
 
