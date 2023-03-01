@@ -13,25 +13,14 @@ We chose New Year’s eve since it is a day that is celebrated across the world 
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
 
 ## Method and Results
-Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the information needed for this research project. In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 27th) and ending five days after New Year's Eve 2022 (January 5th)???. To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
-
+Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the information needed for this research project. To analyze the price mark-up and the availability of Airbnb accommodations during a New Year's Eve in capital cities in Europe, we will use a regression analysis. In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 27th) and ending five days after New Year's Eve 2022 (January 5th). To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for the event. For the analysis, we contrast London, Paris, Amsterdam, and Rome—four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and availability of the Airbnb’s.
 
 ![image](https://user-images.githubusercontent.com/122876103/219945498-c7cecd56-56a0-4293-b8db-7a66a29415fe.png)
 
-Possible research methods: 
-
-•	t-test for prices
-
-•	logistic regression for amount of bookings/availability of Airbnb’s
-
-•	regression for both 
-
-Possible variables: 
+### Variables used in the study
 
 ![image](https://user-images.githubusercontent.com/122876103/219945707-b1d39c4c-32af-409f-8796-d8b4500c7243.png)
 
-
-In order to determine whether the variations in prices may be caused by the day of the week on which it is New Year’s Eve, we can additionally add a control variable (such as weekdays).
 
 To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it. Regression analysis can be used with this cleaned-up dataset to analyze data that is relevant to our research questions.
 
