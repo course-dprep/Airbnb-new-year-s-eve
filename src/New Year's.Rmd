@@ -266,11 +266,3 @@ ggplot(total_list, aes(x = room_type)) +
   labs(x = "Type of room", y = "Number of rooms", fill = "Type of room") +
   scale_fill_viridis_d()
 ```
-
-
-
-
-
-
-
-
