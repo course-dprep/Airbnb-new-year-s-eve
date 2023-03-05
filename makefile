@@ -12,4 +12,3 @@ clean:
 
 paper: data-preparation 
 		Rscript -e "rmarkdown::render('gen/paper/New_Years.Rmd')"
-
