@@ -1,7 +1,13 @@
 # DOWNLOAD DATA 
 
-# Create data directory
-dir.create('./data/data_newyearseve')
+##Set working directory##
+setwd("C:/R/R-4.2.2/bin")
+
+##Craete working directory##
+dir.create("airbnb_newyearseve")
+
+##Reset working directory##
+setwd("C:/R/R-4.2.2/bin/airbnb_newyearseve")
 
 # Avoid downloading timeout #
 options(timeout = max(1000, getOption("timeout")))
@@ -16,13 +22,13 @@ files = list(c(url='http://data.insideairbnb.com/united-kingdom/england/london/2
              c(url='http://data.insideairbnb.com/france/ile-de-france/paris/2022-12-10/data/calendar.csv.gz',
                fn='calendar-paris.csv.gz'),
              c(url='http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2022-12-05/data/listings.csv.gz',
-               fn='listings-amsterdam.csv.gz'),
+               fn='listings-ams.csv.gz'),
              c(url='http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2022-12-05/data/calendar.csv.gz',
-               fn='calendar-amsterdam.csv.gz'),
+               fn='calendar-ams.csv.gz'),
              c(url='http://data.insideairbnb.com/italy/lazio/rome/2022-12-13/data/listings.csv.gz',
                fn='listings-rome.csv.gz'),
              c(url='http://data.insideairbnb.com/italy/lazio/rome/2022-12-13/data/calendar.csv.gz',
                fn='calendar-rome.csv.gz'))
 
 for (item in files) {
-  download.file(item['url'], paste0('./data/data_newyearseve', item['fn']))}
+  download.file(item['url'], paste0(item['fn']))}
