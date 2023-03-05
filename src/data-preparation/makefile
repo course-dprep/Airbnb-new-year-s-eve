@@ -1,5 +1,3 @@
-
-
 DATA = ../../data
 TEMP = ../../gen/data-preparation/temp
 EXPLORATION = ../../src/data-preparation
@@ -13,4 +11,4 @@ $(TEMP)/complete_data.csv: clean_data.R
 	R --vanilla < clean_data.R
 	
 $(EXPLORATION)/data_exploration.html: NewYears.Rmd
-	Rscript -e 'rmarkdown::render("NewYears.Rmd", output_format = "all")'
+	Rscript -e 'rmarkdown::render("New_Years.Rmd", output_format = "all")'
