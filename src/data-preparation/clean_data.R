@@ -49,18 +49,14 @@ for (city in cities) {
 }
 
 # Change type of date to a date 
-calendar_london_filtered <- calendar_london_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
-calendar_paris_filtered <- calendar_paris_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
-calendar_ams_filtered <- calendar_ams_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
-calendar_rome_filtered <- calendar_rome_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
-calendar_london_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
-calendar_london_filtered2 <- calendar_london_filtered[,which(colnames(calendar_london_filtered)%in%calendar_london_filtered2)]
-calendar_paris_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
-calendar_paris_filtered2 <- calendar_paris_filtered[,which(colnames(calendar_paris_filtered)%in%calendar_paris_filtered2)]
-calendar_ams_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
-calendar_ams_filtered2 <- calendar_ams_filtered[,which(colnames(calendar_ams_filtered)%in%calendar_ams_filtered2)]
-calendar_rome_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
-calendar_rome_filtered2 <- calendar_rome_filtered[,which(colnames(calendar_rome_filtered)%in%calendar_rome_filtered2)]
+for(city in cities){
+  calendar_filtered <- get(paste0("calendar_", city, "_filtered"))
+  calendar_filtered <- calendar_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
+  calendar_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
+  calendar_filtered2 <- calendar_filtered[,which(colnames(calendar_filtered)%in%calendar_filtered2)]
+  assign(paste0("calendar_", city, "_filtered"), calendar_filtered)
+  assign(paste0("calendar_", city, "_filtered2"), calendar_filtered2)
+}
 
 
 # Filter for time period (5 days before & after new years eve)
@@ -81,10 +77,12 @@ for(city in cities){
 }
 
 # Add city variable
-calendar_london_filtered3$city <- "London"
-calendar_paris_filtered3$city <- "Paris"
-calendar_ams_filtered3$city <- "Amsterdam"
-calendar_rome_filtered3$city <- "Rome"
+calendar_list <- list(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
+
+for(i in seq_along(cities)){
+  calendar_list[[i]]$city <- toupper(cities[i])
+}
+
 
 # Merged calendar of all cities with bind the rows
 merged_calendar <- bind_rows(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
@@ -103,15 +101,20 @@ complete_data <- na.omit(complete_data_withNA)
 complete_data$price <- gsub('[$]', '', complete_data$price)
 
 # Separate files by city
-complete_data_london <- complete_data %>% filter(complete_data$city == "London")
-complete_data_paris <- complete_data %>% filter(complete_data$city == "Paris")
-complete_data_ams <- complete_data %>% filter(complete_data$city == "Amsterdam")
-complete_data_rome <- complete_data %>% filter(complete_data$city == "Rome")
+complete_data_list <- list()
+
+for(city in cities){
+  complete_data_list[[city]] <- complete_data %>% filter(city == toupper(city))
+}
+
 
 ## OUTPUT ## 
-write_csv(complete_data, "complete_data.csv")
-write_csv(complete_data_london, "complete_data_london.csv")
-write_csv(complete_data_paris, "complete_data_paris.csv")
-write_csv(complete_data_ams, "complete_data_ams.csv")
-write_csv(complete_data_rome, "complete_data_rome.csv")
+data_frames <- list(complete_data = complete_data)
 
+for(city in cities){
+  data_frames[[paste0("complete_data_", city)]] <- complete_data_list[[city]]
+}
+
+for(name in names(data_frames)){
+  write_csv(data_frames[[name]], paste0(name, ".csv"))
+}
