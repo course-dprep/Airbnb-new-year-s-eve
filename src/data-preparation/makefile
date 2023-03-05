@@ -12,3 +12,4 @@ $(TEMP)/complete_data.csv: clean_data.R
 	
 $(EXPLORATION)/data_exploration.html: NewYears.Rmd
 	Rscript -e 'rmarkdown::render("New_Years.Rmd", output_format = "all")'
+
