@@ -29,33 +29,44 @@ To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, L
 
 The directory structure is as follow:
 ```
-├── .github
 ├── src
 |   ├── analysis
 |       ├── analyze.R
-|       ├── graph.R
-|       ├── makefile
+|       ├── update_input.R
 |   ├── data-preparation
+|       ├── Data_exploration.R
+|       ├── Install packages
+|       ├── New_Years.Rmd
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
 |       ├── merge_data.R
+|       ├── update_input.R
+|   ├── paper
+|       ├── paper.tex
+|       ├── tables.R
+|   ├── clean-up.R
 ├── data
+|   ├── dataset1
+|   ├── dataset2
 ├── gen
-|   ├── output
-|       ├── graph
-|          ├── London
-|          ├── Amsterdam
-|          ├── Paris
-           ├── Rome
-|   ├── temp      
-|          ├── London
-|          ├── Amsterdam
-|          ├── Paris
-           ├── Rome
+|   ├── analysis
+|       ├── audit
+|       ├── input
+|       ├── output
+|       ├── temp
+|   ├── data-preparation      
+|       ├── audit
+|       ├── input
+|       ├── output
+|       ├── temp
+|   ├── paper      
+|       ├── audit
+|       ├── input
+|       ├── output
+|       ├── temp
 ├── .gitignore
 ├── README.md
-├── RMarkdown.Rmd
 └── Makefile
 
 ```
