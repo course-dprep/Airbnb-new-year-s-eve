@@ -1,13 +1,7 @@
 # DOWNLOAD DATA 
 
-##Set working directory##
-setwd("C:/R/R-4.2.2/bin")
-
-##Craete working directory##
-dir.create("airbnb_newyearseve")
-
-##Reset working directory##
-setwd("C:/R/R-4.2.2/bin/airbnb_newyearseve")
+##Create working directory##
+dir.create('./raw_data')
 
 # Avoid downloading timeout #
 options(timeout = max(1000, getOption("timeout")))
