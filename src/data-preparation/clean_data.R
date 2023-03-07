@@ -1,8 +1,5 @@
 ## DATA CLEANING ##
 
-##Set working directory##
-setwd("C:/R/R-4.2.2/bin/airbnb_newyearseve")
-
 # load libraries #
 library(tidyverse)
 library(dplyr)
@@ -14,26 +11,27 @@ library(stringr)
 # Create a vector of city names
 cities <- c("london", "paris", "ams", "rome")
 
-# Loop through the cities vector
+# Read in the listing and calendar data for the current city
 for (city in cities) {
-  # Read in the listing and calendar data for the current city
   assign(paste0("listings-", city), read_csv(gzfile(paste0("listings-", city, ".csv.gz"))))
   assign(paste0("calendar-", city), read_csv(gzfile(paste0("calendar-", city, ".csv.gz"))))
 }
 
+
 ## Data Selection ##
+# Read in the listing and calendar data for the current city
 for (city in cities) {
-  # Read in the listing and calendar data for the current city
   assign(paste0("list_", city, "_filtered"), get(paste0("listings-", city)) %>% select(id, host_id, host_location, neighbourhood))
   assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar-", city)) %>% select(listing_id, date, available, price, minimum_nights))
 }
 
+
 ## Cleaning the listings file ##
-# Rename column "id" to "listing_id" to align with calendar file 
+# Rename the "id" column to "listing_id" for the current city's filtered listing data 
 for (city in cities) {
-  # Rename the "id" column to "listing_id" for the current city's filtered listing data
   assign(paste0("list_", city, "_filtered"), get(paste0("list_", city, "_filtered")) %>% rename(listing_id = id))
 }
+
 
 ## Cleaning the calender file ##
 # Rename the "available" column to "booked" and the "date" column to "date_old" for the current city's filtered calendar data 
@@ -58,7 +56,6 @@ for(city in cities){
   assign(paste0("calendar_", city, "_filtered2"), calendar_filtered2)
 }
 
-
 # Filter for time period (5 days before & after new years eve)
 start_date <- "2022-12-26"
 end_date <- "2023-01-05"
@@ -76,37 +73,49 @@ for(city in cities){
            mutate(newyearseve = ifelse(date=="2022-12-31",1,0)))
 }
 
-# Add city variable
-calendar_list <- list(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
+# Add city_dum variable in calendar
+calendar_london_filtered3$london_dum <- "london"
+calendar_paris_filtered3$paris_dum <- "paris"
+calendar_ams_filtered3$ams_dum <- "ams"
+calendar_rome_filtered3$rome_dum <- "rome"
 
-for(i in seq_along(cities)){
-  calendar_list[[i]]$city <- toupper(cities[i])
-}
-
+# Add city variable in listing
+list_london_filtered$city <- "London"
+list_paris_filtered$city <- "Paris"
+list_ams_filtered$city <- "Amsterdam"
+list_rome_filtered$city <- "Rome"
 
 # Merged calendar of all cities with bind the rows
 merged_calendar <- bind_rows(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
+
+# City_dum as dummy variable
+merged_calendar$london_dum <- ifelse(merged_calendar$london_dum=='london',1,0)
+merged_calendar$paris_dum <- ifelse(merged_calendar$paris_dum=='paris',1,0)
+merged_calendar$ams_dum <- ifelse(merged_calendar$ams_dum=='ams',1,0)
+merged_calendar$rome_dum <- ifelse(merged_calendar$rome_dum=='rome',1,0)
+
+# Set NA in city_dum column as 0
+merged_calendar<- merged_calendar%>%mutate_at(c('london_dum','paris_dum','ams_dum','rome_dum'), ~replace_na(.,0))
 
 # Merged listing of all cities with bind the rows
 merged_listing <- bind_rows(list_london_filtered, list_paris_filtered, list_ams_filtered, list_rome_filtered)
 
 # Merged calendar and listing
-complete_data_withNA <- inner_join(merged_calendar, merged_listing, by=c('listing_id'))
+complete_data_withNA <- left_join(merged_calendar, merged_listing, by=c('listing_id'))
 
 # Remove rows with missing data
 complete_data <- na.omit(complete_data_withNA)
+  
 
 ## TRANSFORMATION of complete_data ##
 # Set price as a number, remove $ symbol
 complete_data$price <- gsub('[$]', '', complete_data$price)
 
 # Separate files by city
-complete_data_list <- list()
-
-for(city in cities){
-  complete_data_list[[city]] <- complete_data %>% filter(city == toupper(city))
-}
-
+complete_data_london <- complete_data %>% filter(complete_data$city == "London")
+complete_data_paris <- complete_data %>% filter(complete_data$city == "Paris")
+complete_data_ams <- complete_data %>% filter(complete_data$city == "Amsterdam")
+complete_data_rome <- complete_data %>% filter(complete_data$city == "Rome")
 
 ## OUTPUT ## 
 data_frames <- list(complete_data = complete_data)
