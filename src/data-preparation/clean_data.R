@@ -103,13 +103,13 @@ merged_listing <- bind_rows(list_london_filtered, list_paris_filtered, list_ams_
 # Merged calendar and listing
 complete_data_withNA <- left_join(merged_calendar, merged_listing, by=c('listing_id'))
 
-# Remove rows with missing data
-complete_data <- na.omit(complete_data_withNA)
-  
 
 ## TRANSFORMATION of complete_data ##
-# Set price as a number, remove $ symbol
-complete_data$price <- gsub('[$]', '', complete_data$price)
+# Remove $ symbol of Price column and convert to numeric variable
+complete_data_withNA$price <- gsub('[$]', '', complete_data_withNA$price) %>% as.numeric(as.character(complete_data_withNA$price)) 
+
+# Remove rows with missing data
+complete_data <- na.omit(complete_data_withNA)
 
 # Separate files by city
 complete_data_london <- complete_data %>% filter(complete_data$city == "London")
@@ -118,12 +118,8 @@ complete_data_ams <- complete_data %>% filter(complete_data$city == "Amsterdam")
 complete_data_rome <- complete_data %>% filter(complete_data$city == "Rome")
 
 ## OUTPUT ## 
-data_frames <- list(complete_data = complete_data)
-
-for(city in cities){
-  data_frames[[paste0("complete_data_", city)]] <- complete_data_list[[city]]
-}
-
-for(name in names(data_frames)){
-  write_csv(data_frames[[name]], paste0(name, ".csv"))
-}
+write_csv(complete_data, "./data/complete_data.csv")
+write_csv(complete_data_london, "./data/complete_data_london.csv")
+write_csv(complete_data_paris, "./data/complete_data_paris.csv")
+write_csv(complete_data_ams, "./data/complete_data_ams.csv")
+write_csv(complete_data_rome, "./data/complete_data_rome.csv")
