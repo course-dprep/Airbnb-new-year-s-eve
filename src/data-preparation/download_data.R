@@ -1,7 +1,7 @@
 # DOWNLOAD DATA 
 
 ##Create working directory##
-dir.create('./raw_data')
+dir.create('./data')
 
 # Avoid downloading timeout #
 options(timeout = max(1000, getOption("timeout")))
