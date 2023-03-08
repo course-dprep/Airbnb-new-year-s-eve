@@ -5,7 +5,6 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(readr)
-library(stringr)
 
 # Input files #
 # Create a vector of city names
