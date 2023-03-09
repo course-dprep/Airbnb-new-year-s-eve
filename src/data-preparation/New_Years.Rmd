@@ -6,6 +6,7 @@ date: "2023-03-05"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+2
 ```
 
 ```{r, echo=FALSE, include=FALSE}
