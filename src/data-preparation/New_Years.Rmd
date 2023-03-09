@@ -1,89 +1,100 @@
 ---
-title: "New Year's"
-output: html_document
-date: "2023-03-05"
+title: "NewYears"
+output:
+  pdf_document: default
+  html_document: default
+date: "2023-03-01"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-2
 ```
 
-```{r, echo=FALSE, include=FALSE}
-# Install packages
+
+```{r}
+# Install package
 install.packages("dplyr")
 install.packages("tidyverse")
 install.packages("scales")
+```
 
+
+```{r}
 # Load packages
 library(dplyr)
 library(tidyverse)
 library(scales)
 ```
 
-```{r,include = FALSE}
-setwd("C:/MA/dPREP/RStudio/Teamproject")
 
-#summary statistics
+```{r}
+# loading the data (listings)
 list_ams <- read_csv('listings-ams.csv.gz')
-list_ams_prices <- list_ams$price[!is.na(list_ams$price)]
-list_ams_prices <- gsub("\\$", "", list_ams_prices)
-list_ams_prices <- as.numeric(list_ams_prices)
-list_ams_prices <- summary(list_ams_prices)
-list_ams_prices
-```
-
-```{r, echo=TRUE}
-setwd("C:/MA/dPREP/RStudio/Teamproject")
-
-#summary statistics
 list_lon <- read_csv("listings-london.csv.gz") 
-list_lon_prices <- list_lon$price[!is.na(list_lon$price)]
-list_lon_prices <- gsub("\\$", "", list_lon_prices)
-list_lon_prices <- as.numeric(list_lon_prices)
-list_lon_prices <- summary(list_lon_prices)
-list_lon_prices
-```
-
-```{r, echo=TRUE}
-setwd("C:/MA/dPREP/RStudio/Teamproject")
-
-#summary statistics
 list_par <- read_csv("listings-paris.csv.gz") 
-list_par_prices <- list_par$price[!is.na(list_par$price)]
-list_par_prices <- gsub("\\$", "", list_par_prices)
-list_par_prices <- as.numeric(list_par_prices)
-list_par_prices <- summary(list_par_prices)
-list_par_prices
+list_rom <- read_csv("listings-rome.csv.gz") 
+
+#loading the data (calendar)
+cal_ams <- read_csv('calendar-ams.csv.gz')
+cal_lon <- read_csv('calendar-london.csv.gz')
+cal_par <- read_csv('calendar-paris.csv.gz')
+cal_rom <- read_csv('calendar-rome.csv.gz')
 ```
 
-```{r, echo=TRUE}
-setwd("C:/MA/dPREP/RStudio/Teamproject")
+**Summary statistics on the price of the cities**
+```{r}
+file_names <- c( 'listings-ams.csv.gz', "listings-london.csv.gz", "listings-paris.csv.gz", "listings-rome.csv.gz")
+city_names <- c('Amsterdam', 'London', 'Paris', 'Rome')
 
-#summary statistics
-list_rom <- read_csv("listings-rome.csv.gz")
-list_rom_prices <- list_rom$price[!is.na(list_rom$price)]
-list_rom_prices <- gsub("\\$", "", list_rom_prices)
-list_rom_prices <- as.numeric(list_rom_prices)
-list_rom_prices <- summary(list_rom_prices)
-list_rom_prices
+# Loop through the file names and perform the same operations on each file
+for (i in 1:length(file_names)) {
+  list_data <- read_csv(file_names[i])
+  list_prices <- list_data$price[!is.na(list_data$price)]
+  list_prices <- as.numeric(gsub("\\$", "", list_prices))
+  list_prices_summary <- summary(list_prices)
+  print(paste("This is the price summary statistics for", city_names[i], ":" , list_prices_summary))
+}
 ```
 
+```{r}
+#removing the dollar sign from the "price" column in the calendar data
+cal_ams <- cal_ams %>%
+  mutate(price = ifelse(!is.na(price), as.numeric(gsub("\\$", "", price)), price))
+cal_lon <- cal_lon %>%
+  mutate(price = ifelse(!is.na(price), as.numeric(gsub("\\$", "", price)), price))
+cal_par <- cal_par %>%
+  mutate(price = ifelse(!is.na(price), as.numeric(gsub("\\$", "", price)), price))
+cal_rom <- cal_rom %>%
+  mutate(price = ifelse(!is.na(price), as.numeric(gsub("\\$", "", price)), price))
+```
+
+
+**Summary statistics for beds per city**
 ```{r, echo=FALSE}
 # Create a list of the cities
 cities_list <- list(list_ams, list_lon, list_par, list_rom)
 
-# Names of the cities
-cities_names <- c("Amsterdam", "London", "Paris", "Rome")
-
 # Loop
 for (i in 1:length(cities_list)) {
-  cat("Summary statistics for", cities_names[i], "\n")
+  cat("Summary statistics for", city_names[i], "\n")
   cat("Beds\n")
   print(summary(cities_list[[i]]$beds))
 }
+```
+
+**List for calendar**
+```{r, echo=FALSE}
+# Create a list of the cities
+cities_cal <- list(cal_ams, cal_lon, cal_par, cal_rom)
+
+# Names of the cities
+cities_names <- c("Amsterdam", "London", "Paris", "Rome")
+
+```
+
 
 ```{r, echo=FALSE}
+#subset lists of the city from the listing data
 subset_list_ams <- data.frame(
   id = list_ams$id,
   host_id = list_ams$host_id,
@@ -128,32 +139,105 @@ subset_list_rom <- data.frame(
   city = "Rome")
 
 total_list <- rbind(subset_list_ams, subset_list_lon, subset_list_par, subset_list_rom)
+
+
+
 ```
 
+
+```{r, echo=FALSE}
+##subset lists of the city from the calendar data
+subset_cal_ams <- data.frame(
+  listing_id = cal_ams$listing_id,
+  date = cal_ams$date,
+  available = cal_ams$available,
+  adjusted_price = cal_ams$adjusted_price,
+  price = cal_ams$price,
+  minimum_nights = cal_ams$minimum_nights,
+  maximum_nights = cal_ams$maximum_nights,
+  city = "Amsterdam"
+)
+
+subset_cal_lon <- data.frame(
+  listing_id = cal_lon$listing_id,
+  date = cal_lon$date,
+  available = cal_lon$available,
+  adjusted_price = cal_lon$adjusted_price,
+  price = cal_lon$price,
+  minimum_nights = cal_lon$minimum_nights,
+  maximum_nights = cal_lon$maximum_nights,
+  city = "London"
+)
+
+subset_cal_par <- data.frame(
+  listing_id = cal_par$listing_id,
+  date = cal_par$date,
+  available = cal_par$available,
+  adjusted_price = cal_par$adjusted_price,
+  price = cal_par$price,
+  minimum_nights = cal_par$minimum_nights,
+  maximum_nights = cal_par$maximum_nights,
+  city = "Paris"
+)
+
+subset_cal_rom <- data.frame(
+  listing_id = cal_rom$listing_id,
+  date = cal_rom$date,
+  available = cal_rom$available,
+  adjusted_price = cal_rom$adjusted_price,
+  price = cal_rom$price,
+  minimum_nights = cal_rom$minimum_nights,
+  maximum_nights = cal_rom$maximum_nights,
+  city = "Rome"
+)
+
+
+total_cal <- rbind(subset_cal_ams, subset_cal_lon, subset_cal_par, subset_cal_rom)
+
+
+
+```
+
+**Number of available rooms per city** 
+```{r, echo=FALSE}
+#misschien moeten we een datum erbij voegen?
+total_cal <- total_cal %>% 
+  mutate(available = ifelse(available == TRUE, "available", available)) %>%
+  mutate(available = ifelse(available == FALSE, "unavailable", available))
+
+table(total_cal$available,  total_cal$city)
+```
+
+**Number of rooms types per city**
 ```{r, echo=FALSE}
 table(total_list$room_type, total_list$city)
 ```
 
+**Percentage number of rooms in Amsterdam**
 ```{r, echo=FALSE}
 Amsterdam <- table(list_ams$room_type)
 prop.table(Amsterdam)
 ```
 
+**Percentage number of rooms in London**
 ```{r, echo=FALSE}
 London <- table(list_lon$room_type)
 prop.table(London)
 ```
 
+**Percent number of rooms in Paris**
 ```{r, echo=FALSE}
 Paris <- table(list_par$room_type)
 prop.table(Paris)
 ```
 
+**Percent number of rooms in Rome**
 ```{r, echo=FALSE}
 Rome <- table(list_rom$room_type)
 prop.table(Rome)
 ```
 
+**Airbnb room types offered in Amsterdam**
 ```{r, echo=FALSE}
 piepercent_ams<- round(100*table(list_ams$room_type)/sum(table(list_ams$room_type)), 1)
 pie(table(list_ams$room_type), labels = paste0(piepercent_ams, "%"), main = "Room types in Amsterdam", col = rainbow(length(table(list_ams$room_type)), s = 0.5))
@@ -161,6 +245,7 @@ legend("bottomleft", c("Entire home/apt","Hotel room","Private room","Shared roo
        fill = rainbow(length(table(list_ams$room_type)), s = 0.5))
 ```
 
+**Airbnb room types offered in London**
 ```{r, echo=FALSE}
 piepercent_lon<- round(100*table(list_lon$room_type)/sum(table(list_lon$room_type)), 1)
 pie(table(list_lon$room_type), labels = paste0(piepercent_lon, "%"), main = "Room types in London", col = rainbow(length(table(list_lon$room_type)), s = 0.5))
@@ -168,6 +253,7 @@ legend("bottomright", c("Entire home/apt","Hotel room","Private room","Shared ro
        fill = rainbow(length(table(list_lon$room_type)), s = 0.5))
 ```
 
+**Airbnb room types offered in Paris**
 ```{r, echo=FALSE}
 piepercent_par<- round(100*table(list_par$room_type)/sum(table(list_par$room_type)), 1)
 pie(table(list_par$room_type), labels = paste0(piepercent_par, "%"), main = "Room types in Paris", col = rainbow(length(table(list_par$room_type)), s = 0.5))
@@ -175,6 +261,8 @@ legend("bottomleft", c("Entire home/apt","Hotel room","Private room","Shared roo
        fill = rainbow(length(table(list_par$room_type)), s = 0.5))
 ```
 
+
+**Airbnb room types offered in Rome**
 ```{r, echo=FALSE}
 piepercent_rom<- round(100*table(list_rom$room_type)/sum(table(list_rom$room_type)), 1)
 pie(table(list_rom$room_type), labels = paste0(piepercent_rom, "%"), main = "Room types in Rome", col = rainbow(length(table(list_rom$room_type)), s = 0.5))
@@ -182,6 +270,7 @@ legend("topright", c("Entire home/apt","Hotel room","Private room","Shared room"
        fill = rainbow(length(table(list_rom$room_type)), s = 0.5))
 ```
 
+**Quantity of type of rooms in Amsterdam**
 ```{r, echo=FALSE}
 ggplot(list_ams, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
@@ -191,6 +280,7 @@ ggplot(list_ams, aes(x = room_type)) +
   scale_fill_viridis_d()
 ```
 
+**Quantity of type of rooms in London**
 ```{r, echo=FALSE}
 ggplot(list_lon, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
@@ -200,6 +290,7 @@ ggplot(list_lon, aes(x = room_type)) +
   scale_fill_viridis_d()
 ```
 
+**Quantity of type of rooms in Paris**
 ```{r, echo=FALSE}
 ggplot(list_par, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
@@ -209,6 +300,7 @@ ggplot(list_par, aes(x = room_type)) +
   scale_fill_viridis_d()
 ```
 
+**Quantity of type of rooms in Rome**
 ```{r, echo=FALSE}
 ggplot(list_rom, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
@@ -218,6 +310,7 @@ ggplot(list_rom, aes(x = room_type)) +
   scale_fill_viridis_d()
 ```
 
+**Percentage of rooms offered in Amsterdam**
 ```{r, echo=FALSE}
 ggplot(list_ams, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
@@ -228,6 +321,7 @@ ggplot(list_ams, aes(x = room_type)) +
   scale_y_continuous(labels = scales::percent_format(), name = "Percentage of rooms")
 ```
 
+**Percentage of rooms offered in London**
 ```{r, echo=FALSE}
 ggplot(list_lon, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
@@ -238,6 +332,7 @@ ggplot(list_lon, aes(x = room_type)) +
   scale_y_continuous(labels = scales::percent_format(), name = "Percentage of rooms")
 ```
 
+**Percentage of rooms offered in Paris**
 ```{r, echo=FALSE}
 ggplot(list_par, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
@@ -248,6 +343,7 @@ ggplot(list_par, aes(x = room_type)) +
   scale_y_continuous(labels = scales::percent_format(), name = "Percentage of rooms")
 ```
 
+**Percentage of rooms offered in Rome**
 ```{r, echo=FALSE}
 ggplot(list_rom, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
@@ -258,6 +354,7 @@ ggplot(list_rom, aes(x = room_type)) +
   scale_y_continuous(labels = scales::percent_format(), name = "Percentage of rooms")
 ```
 
+**Number and type of rooms comparison between the cities**
 ```{r, echo=FALSE}
 ggplot(total_list, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
@@ -267,3 +364,4 @@ ggplot(total_list, aes(x = room_type)) +
   labs(x = "Type of room", y = "Number of rooms", fill = "Type of room") +
   scale_fill_viridis_d()
 ```
+
