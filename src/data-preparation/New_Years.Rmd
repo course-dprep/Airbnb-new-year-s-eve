@@ -141,7 +141,6 @@ subset_list_rom <- data.frame(
 total_list <- rbind(subset_list_ams, subset_list_lon, subset_list_par, subset_list_rom)
 
 
-
 ```
 
 
@@ -193,8 +192,6 @@ subset_cal_rom <- data.frame(
 
 
 total_cal <- rbind(subset_cal_ams, subset_cal_lon, subset_cal_par, subset_cal_rom)
-
-
 
 ```
 
