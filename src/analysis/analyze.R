@@ -27,6 +27,15 @@ for (city in cities) {
 
 ##TRANSFORMATION
 
+#Assumptions
+
+#Normality
+complete_data_sample <- sample_n(complete_data, 5000)
+shapiro.test(complete_data_sample$price)
+
+#add more if needed 
+
+
 #complete model booked 
 
 model_booked <- lm(booked ~ newyearseve, data = complete_data)
