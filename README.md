@@ -29,7 +29,7 @@ Not finished yet:
 
 Price: H1: New Year’s Eve influences the prices of Airbnb listings. The results show a P-value of <0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, the H0 can be rejected. Therefore, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings.
 
-Bookings: H1: New Year’s Eve influences the amount of booked Airbnbs. The results from the linear regression shows a P-value<0.01. Therefore, with a significance of 0.05, the null hypothesis can be rejected. 
+Bookings: H1: New Year’s Eve influences the amount of booked Airbnbs. The results from the linear regression show a P-value<0.01. Therefore, with a significance of 0.05, the null hypothesis can be rejected. 
 
 ## Conclusion
 
