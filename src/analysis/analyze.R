@@ -68,6 +68,7 @@ save(model_booked, model_price, model_loop, file="./src/analysis/regression/mode
 save(model_booked, model_price, model_booked_rome, model_price_rome, model_booked_ams, model_price_ams, model_booked_paris, model_price_paris, model_booked_london, model_price_london ,file="./src/analysis/regression/model_results_booked.R") 
 
 # without loops: 
+
 #linear regression for booked per city
 #need to make a loop of this: per city
 
