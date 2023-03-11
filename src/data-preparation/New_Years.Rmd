@@ -10,7 +10,8 @@ date: "2023-03-01"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
+*Input*
+**Install packages**
 ```{r}
 # Install package
 install.packages("dplyr")
@@ -18,7 +19,7 @@ install.packages("tidyverse")
 install.packages("scales")
 ```
 
-
+**Load packages**
 ```{r}
 # Load packages
 library(dplyr)
@@ -47,7 +48,7 @@ cal_par <- read_csv('calendar-paris.csv.gz')
 cal_rom <- read_csv('calendar-rome.csv.gz')
 ```
 
-**Summary statistics on the price of the cities**
+**Summary statistics on the price of the cities for the listings dataset**
 ```{r}
 file_names <- c( 'listings-ams.csv.gz', "listings-london.csv.gz", "listings-paris.csv.gz", "listings-rome.csv.gz")
 city_names <- c('Amsterdam', 'London', 'Paris', 'Rome')
@@ -62,6 +63,7 @@ for (i in 1:length(file_names)) {
 }
 ```
 
+**Summary statistics on the price of the cities for the calendar dataset**
 ```{r}
 #removing the dollar sign from the "price" column in the calendar data
 cal_ams <- cal_ams %>%
@@ -73,7 +75,6 @@ cal_par <- cal_par %>%
 cal_rom <- cal_rom %>%
   mutate(price = ifelse(!is.na(price), as.numeric(gsub("\\$", "", price)), price))
 ```
-
 
 **Summary statistics for beds per city**
 ```{r, echo=FALSE}
@@ -88,7 +89,7 @@ for (i in 1:length(cities_list)) {
 }
 ```
 
-**List for calendar**
+**Summary statistics for all cities**
 ```{r, echo=FALSE}
 # Create a list of the cities
 cities_cal <- list(cal_ams, cal_lon, cal_par, cal_rom)
@@ -98,7 +99,7 @@ cities_names <- c("Amsterdam", "London", "Paris", "Rome")
 
 ```
 
-
+**Subset of the listings dataset for all cities**
 ```{r, echo=FALSE}
 #subset lists of the city from the listing data
 subset_list_ams <- data.frame(
@@ -149,7 +150,7 @@ total_list <- rbind(subset_list_ams, subset_list_lon, subset_list_par, subset_li
 
 ```
 
-
+**Subset of the calendar dataset for all cities**
 ```{r, echo=FALSE}
 ##subset lists of the city from the calendar data
 subset_cal_ams <- data.frame(
@@ -264,7 +265,6 @@ legend("bottomleft", c("Entire home/apt","Hotel room","Private room","Shared roo
        fill = rainbow(length(table(list_par$room_type)), s = 0.5))
 ```
 
-
 **Airbnb room types offered in Rome**
 ```{r, echo=FALSE}
 piepercent_rom<- round(100*table(list_rom$room_type)/sum(table(list_rom$room_type)), 1)
@@ -367,4 +367,3 @@ ggplot(total_list, aes(x = room_type)) +
   labs(x = "Type of room", y = "Number of rooms", fill = "Type of room") +
   scale_fill_viridis_d()
 ```
-
