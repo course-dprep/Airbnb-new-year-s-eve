@@ -48,6 +48,7 @@ cal_par <- read_csv('calendar-paris.csv.gz')
 cal_rom <- read_csv('calendar-rome.csv.gz')
 ```
 
+***Transformation***
 **Summary statistics on the price of the cities for the listings dataset**
 ```{r}
 file_names <- c( 'listings-ams.csv.gz', "listings-london.csv.gz", "listings-paris.csv.gz", "listings-rome.csv.gz")
@@ -202,6 +203,7 @@ total_cal <- rbind(subset_cal_ams, subset_cal_lon, subset_cal_par, subset_cal_ro
 
 ```
 
+***Output***
 **Number of available rooms per city** 
 ```{r, echo=FALSE}
 #misschien moeten we een datum erbij voegen?
