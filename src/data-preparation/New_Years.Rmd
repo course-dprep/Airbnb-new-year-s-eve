@@ -6,11 +6,11 @@ output:
 date: "2023-03-01"
 ---
 
+***Setup***
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-***Input***
 **Install packages**
 ```{r}
 # Install package
@@ -33,6 +33,7 @@ library(scales)
 dir.create('../../src/data-preparation')
 ```
 
+***Input***
 **Load the data**
 ```{r}
 # loading the data (listings)
