@@ -10,7 +10,7 @@ date: "2023-03-01"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-*Input*
+***Input***
 **Install packages**
 ```{r}
 # Install package
