@@ -26,7 +26,13 @@ library(tidyverse)
 library(scales)
 ```
 
+**Set the working directory**
+```{r}
+# Set the working directory
+dir.create('../../src/data-preparation')
+```
 
+**Load the data**
 ```{r}
 # loading the data (listings)
 list_ams <- read_csv('listings-ams.csv.gz')
