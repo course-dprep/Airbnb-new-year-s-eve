@@ -7,7 +7,7 @@ library(dplyr)
 library(tidyverse)
 library(stargazer)
 
-##GRAPHS does not make sense yet !!!!!!! 
+##GRAPHS does not make sense yet !!!!! We need to look into what we want to show and what is relevant for our research question + need to make it a markdown!
 
 regression_summary_booked <- summary(model_booked)
 regression_summary_price <- summary(model_price)
