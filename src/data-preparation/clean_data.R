@@ -7,7 +7,7 @@ library(ggplot2)
 library(readr)
 library(car)
 
-# Input files #
+## INPUT ##
 # Create a vector of city names
 cities <- c("london", "paris", "ams", "rome")
 
@@ -17,7 +17,6 @@ for (city in cities) {
   assign(paste0("calendar-", city), read_csv(gzfile(paste0("calendar-", city, ".csv.gz"))))
 }
 
-
 ## Data Selection ##
 # Read in the listing and calendar data for the current city
 for (city in cities) {
@@ -25,15 +24,14 @@ for (city in cities) {
   assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar-", city)) %>% select(listing_id, date, available, price, minimum_nights))
 }
 
-
-## Cleaning the listings file ##
+##TRANSFORMATION##
+# Clean the listings file
 # Rename the "id" column to "listing_id" for the current city's filtered listing data 
 for (city in cities) {
   assign(paste0("list_", city, "_filtered"), get(paste0("list_", city, "_filtered")) %>% rename(listing_id = id))
 }
 
-
-## Cleaning the calender file ##
+# Clean the calender file
 # Rename the "available" column to "booked" and the "date" column to "date_old" for the current city's filtered calendar data 
 for (city in cities) {
   assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar_", city, "_filtered")) %>% 
