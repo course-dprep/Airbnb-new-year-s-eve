@@ -1,12 +1,13 @@
-# DOWNLOAD DATA 
+## DOWNLOAD DATA##
 
 ##Create working directory##
 dir.create('./data')
 
-# Avoid downloading timeout #
+##Input##
+# Avoid downloading timeout
 options(timeout = max(1000, getOption("timeout")))
 
-# Downloading the files from Inside Aibnb #
+# Downloading the files from Inside Airbnb
 files = list(c(url='http://data.insideairbnb.com/united-kingdom/england/london/2022-12-10/data/listings.csv.gz',
                fn ='listings-london.csv.gz'),
              c(url='http://data.insideairbnb.com/united-kingdom/england/london/2022-12-10/data/calendar.csv.gz',
