@@ -52,18 +52,36 @@ for (i in seq_along(cities)) {
 
 ***Transformation***
 **Summary statistics on the price of the cities for the listings dataset**
+
 ```{r}
 file_names <- c( 'listings-ams.csv.gz', "listings-london.csv.gz", "listings-paris.csv.gz", "listings-rome.csv.gz")
 city_names <- c('Amsterdam', 'London', 'Paris', 'Rome')
 
-# Loop through the file names and perform the same operations on each file
+price_summary <- data.frame(city = character(),
+                            min_price = numeric(),
+                            max_price = numeric(),
+                            mean_price = numeric(),
+                            stringsAsFactors = FALSE)
+
+# loop through each file and calculate the summary statistics
+# A filter (price above 0) has been applied to remove outliers
 for (i in 1:length(file_names)) {
-  list_data <- read_csv(file_names[i])
+  list_data <- read.csv(file_names[i])
   list_prices <- list_data$price[!is.na(list_data$price)]
   list_prices <- as.numeric(gsub("\\$", "", list_prices))
+  list_prices <- list_prices[!is.na(list_prices)]
+  list_prices <- list_prices[list_prices > 0]
   list_prices_summary <- summary(list_prices)
-  print(paste("This is the price summary statistics for", city_names[i], ":" , list_prices_summary))
+  
+  # add the results to the data frame
+  price_summary[i, "city"] <- city_names[i]
+  price_summary[i, "min_price"] <- list_prices_summary["Min."]
+  price_summary[i, "max_price"] <- list_prices_summary["Max."]
+  price_summary[i, "mean_price"] <- mean(list_prices)
 }
+
+# display the price summary table
+price_summary
 ```
 
 
