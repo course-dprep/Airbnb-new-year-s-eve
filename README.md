@@ -104,7 +104,7 @@ First, type "make -n" in the Terminal. R wil then show you everything it will ru
 This repository was created as a part of the Data Preparation and Workflow Managemant course in the Marketing Analytics Master of Tilburg University. The following students contributed to the creation of this repository:
 
 * Fleur Le Mire
-* Mariella Van Erve
+* Mariëlla Van Erve
 * Nishtha Staice
 * Yi Ting Tsai
 * Hilal Nur Turer
