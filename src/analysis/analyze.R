@@ -8,23 +8,19 @@ library(dplyr)
 library(tidyverse)
 library(stargazer)
 
-#create directory 
-dir.create('../../src/analysis/analyze.R') 
+##INPUT##
+#import the complete data 
+complete_data <- read_csv("../../gen/data-preparation/output/complete_data.csv")
 
-#import the data 
+#import the data per 
 cities <- c("rome", "paris", "ams", "london")
 
 for (city in cities) {
   file_name <- paste0("complete_data_", city, ".csv")
-  assign(paste0("complete_data_", city), read.csv(file_name))
+  assign(paste0("complete_data_", city), read_csv((paste0("../../gen/data-preparation/output/", "complete_data_",city, ".csv"))))
 }
 
-#loop for view the complete data
-for (city in cities) {
-  view(get(paste0("complete_data_", city)))
-}
-
-##TRANSFORMATION
+##TRANSFORMATION##
 
 ##complete model booked: logistic regression
 model_booked <- glm(booked ~ newyearseve, data = complete_data, family = binomial)
@@ -61,6 +57,6 @@ models_price <- lapply(cities, function(city) {
 model_price_city_differences <- lm(price ~ newyearseve + paris_dum + rome_dum + ams_dum, data = complete_data)
 summary(model_price_city_differences)
 
-##OUTPUT
-save(model_booked, model_price, models_price, models_booked, model_price_city_differences, file='../../src/analysis/model_results.RData') 
+##OUTPUT##
+save(model_booked, model_price, models_price, models_booked, model_price_city_differences, file='../../gen/analysis/output/model_results.RData') 
 
