@@ -19,13 +19,14 @@ Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the
 
 ### Variables used in the study
 
-![image](https://user-images.githubusercontent.com/122876103/219945707-b1d39c4c-32af-409f-8796-d8b4500c7243.png)
+![image](https://user-images.githubusercontent.com/122876103/225419380-98f13b20-8c37-4a2d-97fd-5c4d7106a5c6.png)
 
-To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it. Regression analysis can be used with this cleaned-up dataset to analyze data that is relevant to our research questions.
+
+To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it and this will be saved in a file with the name complete_data.csv. Moreover, the data per city will be saved seperately. A linear regression analysis has be used with this cleaned-up dataset to analyze the effect onthe Airbnb prices. A logistic regression has been used to determine the effect of New Year's Eve on the bookings. 
 
 ### Results
 
-*Price*: H1: New Year’s Eve influences the prices of Airbnb listings. The results show a P-value of <0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, the H0 can be rejected. Therefore, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. Not finished yet. 
+*Price*: H1: New Year’s Eve influences the prices of Airbnb listings. The results show a P-value of <0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, the H0 can be rejected. Therefore, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. Not finished yet. Moreover, it is striking that the prices of Airbnbs in Paris, London and Rome are comparable. Prices in Amsterdam, on the other hand, are significantly higher.
 
 *Bookings*: H1: New Year’s Eve influences the amount of booked Airbnbs. The results from the logistic regression show a P-value<0.01 for both the complete model and the different cities seperate. Therefore, with a significance of 0.05, the null hypothesis can be rejected. By examining the exponents, we discovered that the impact across Paris, London, and Amsterdam is very similar, but they are all very different from Rome. The likelihood of an Airbnb being booked on New Year's Eve in Amsterdam increases by 0.692, in Paris increases by 0.451 and in London increases by 0.470. While these odds increase by 1.029 in Rome respectively. This demonstrates that the likelihood of booking an Airbnb on New Year’s Eve is the highest in Rome. 
 
