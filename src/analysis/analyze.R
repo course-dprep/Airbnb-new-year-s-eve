@@ -54,6 +54,7 @@ models_price <- lapply(cities, function(city) {
   return(list(city=city, model_price=model_price))
 })
 
+#model where differences in prices are shown per city compared to london
 model_price_city_differences <- lm(price ~ newyearseve + paris_dum + rome_dum + ams_dum, data = complete_data)
 summary(model_price_city_differences)
 
