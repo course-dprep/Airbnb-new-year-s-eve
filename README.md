@@ -19,7 +19,13 @@ Inside Airbnb [insideairbnb](http://insideairbnb.com/get-the-data/) provided the
 
 ### Variables used in the study
 
-![image](https://user-images.githubusercontent.com/122876103/225419380-98f13b20-8c37-4a2d-97fd-5c4d7106a5c6.png)
+| **Variable**  | **Description**                                                                       | **Data** |
+| ------------- | ------------------------------------------------------------------------------------- | -------- |
+| price         | The listing price of an Airbnb per night in dollars                                   | numeric  |
+| booked        | Dummy variable: whether the accomodation is not booked (0) or it is booked (1)        | numeric  |
+| newyearseve   | Dummy variable: whether it is not New Year's Eve (0) or it is (1) on that specific day| numeric  |
+| city          | The city of the Airbnb listing (London, Paris, Amsterdam or Rome)                     | character|
+
 
 
 To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up. Moreover, it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it and this will be saved in a file with the name complete_data.csv. Moreover, the data per city will be saved seperately. A linear regression analysis has be used with this cleaned-up dataset to analyze the effect onthe Airbnb prices. A logistic regression has been used to determine the effect of New Year's Eve on the bookings. 
