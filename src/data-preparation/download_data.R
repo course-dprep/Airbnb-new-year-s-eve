@@ -1,7 +1,7 @@
 ## DOWNLOAD DATA##
 
 ##Create working directory##
-dir.create('./gen/data-preparation/temp/dataset_original')
+dir.create('../../data')
 
 ##Input##
 # Avoid downloading timeout
@@ -26,4 +26,4 @@ files = list(c(url='http://data.insideairbnb.com/united-kingdom/england/london/2
                fn='calendar-rome.csv.gz'))
 
 for (item in files) {
-  download.file(item['url'], paste0('./gen/data-preparation/temp/dataset_original/', item['fn']))}
+  download.file(item['url'], paste0('../../data/', item['fn']))}
