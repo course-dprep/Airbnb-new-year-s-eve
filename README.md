@@ -53,42 +53,34 @@ The directory structure is as follow:
 ├── src
 |   ├── analysis
 |       ├── analyze.R
+|       ├── Graphs.R
 |       ├── update_input.R
+|       ├── regression
+|       ├── makefile
 |   ├── data-preparation
 |       ├── Data_exploration.R
-|       ├── Install packages
+|       ├── Install packages.R
 |       ├── New_Years.Rmd
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
-|       ├── merge_data.R
-|       ├── update_input.R
 |   ├── paper
 |       ├── paper.tex
 |       ├── tables.R
 |   ├── clean-up.R
-├── data
-|   ├── dataset1
-|   ├── dataset2
 ├── gen
 |   ├── analysis
-|       ├── audit
-|       ├── input
 |       ├── output
 |       ├── temp
 |   ├── data-preparation      
-|       ├── audit
-|       ├── input
 |       ├── output
 |       ├── temp
 |   ├── paper      
-|       ├── audit
-|       ├── input
 |       ├── output
 |       ├── temp
 ├── .gitignore
 ├── README.md
-└── Makefile
+└── makefile
 
 ```
 
@@ -126,7 +118,7 @@ This repository was created as a part of the Data Preparation and Workflow Manag
 
 
 ## Notes
-- `make clean` removes all unncessary temporary files. 
+- `make clean` removes all unnecessary temporary files. 
 - Tested under Linux Mint (should work in any linux distro, as well as on Windows and Mac) 
 - IMPORTANT: In `makefile`, when using `\` to split code into multiple lines, no space should follow `\`. Otherwise Gnu make aborts with error 193. 
 - Many possible improvements remain. Comments and contributions are welcome!
