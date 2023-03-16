@@ -13,8 +13,8 @@ cities <- c("london", "paris", "ams", "rome")
 
 # Read in the listing and calendar data for the current city
 for (city in cities) {
-  assign(paste0("listings-", city), read_csv(gzfile(paste0('./gen/data-preparation/temp/dataset_original/',"listings-", city, ".csv.gz"))))
-  assign(paste0("calendar-", city), read_csv(gzfile(paste0('./gen/data-preparation/temp/dataset_original/',"calendar-", city, ".csv.gz"))))
+  assign(paste0("listings-", city), read_csv(gzfile(paste0('../../data/',"listings-", city, ".csv.gz"))))
+  assign(paste0("calendar-", city), read_csv(gzfile(paste0('../../data/',"calendar-", city, ".csv.gz"))))
 }
 
 ## Data Selection ##
@@ -128,6 +128,6 @@ complete_data_list <- list(
 # Loop through the list of complete_data objects and write each object to a separate CSV file
 for (i in seq_along(complete_data_list)) {
   file_name <- paste("complete_data", c("","_london", "_paris", "_ams", "_rome")[i], ".csv", sep = "")
-  file_path <- paste("./gen/data-preparation/output/", file_name, sep = "")
+  file_path <- paste("../../gen/data-preparation/output/", file_name, sep = "")
   write_csv(complete_data_list[[i]], file_path)
 }
