@@ -5,9 +5,13 @@ Welcome to our research project!
 ![image](https://user-images.githubusercontent.com/123902060/220652672-82bcdd9e-0f1a-4cfe-bdeb-f8dfcbed94f1.png)
 
 ## Motivation
-In this study, the effect of New Year’s eve on Airbnb listings is analyzed across multiple capital cities in Europe. We chose the cities London, Paris, Amsterdam, and Rome in order to measure if New Year’s eve has a different influence per city on the Airbnb accommodations. Therefore, we will look at the price of the listings and the availability of airbnb’s, so the number of booked/not booked accommodations.
+“May the new year take you to place you have never been before”
 
-We chose New Year’s eve since it is a day that is celebrated across the world and happens each yar on the same date. We wanted to compare more cities throughout Europe, rather than just a few cities in the netherlands. Moreover, we also found it important that the cities are comparable in size/population, expensiveness etc so that this could not influence the results. Therefore, we decided to only choose a few capital cities in Europe. Another important part for choosing this event was that the data is available for before, during, and after the event which we checked before choosing this research and those specific cities.
+However, traveling to new places requires a lot of planning and coordination, such as finding the right accommodation. As we all know, searching for accommodation, especially in capital cities, can be quite frustrating, especially during the holidays. Thanks to Airbnb, offering many affordable options, this has become a thing of the past. 
+
+This study aims to analyze the effects of one of the biggest holidays on Airbnb listings: New Year’s eve. We believe that New Year’s eve could influence the price of listings and the availability of Airbnb’s during this end-of-year period. Among all holidays, we chose New Year’s Eve because it is celebrated across the world, happens each year on the same date, and is celebrated by all ages. To analyze the effect, we selected European cities that are well-known both inside and outside of Europe: London, Paris, Amsterdam, and Rome. 
+
+Furthermore we took into account the size/population and costliness of the cities in our selection to ensure they did not influence the results. For the holiday, we considered the events that provided data for multiple cities before, during and after the event. 
 
 ### Research Question
 What is the effect of New Year’s eve on Airbnb listings in Capital cities in Europe?
@@ -84,12 +88,19 @@ The main aim of this to have a basic structure, which can be easily adjusted to 
 3. Present results in a final pdf generated
 
 ## Dependencies
-- R 
-- R packages: `install.packages("stargazer")`
-- [Gnu Make](https://tilburgsciencehub.com/get/make) 
-- [TeX distribution](https://tilburgsciencehub.com/get/latex/?utm_campaign=referral-short)
-- For the `makefile` to work, R, Gnu make and the TeX distribution (specifically `pdflatex`) need to be made available in the system path 
-- Detailed installation instructions can be found here: [tilburgsciencehub.com](http://tilburgsciencehub.com/)
+Please follow the installation guides on http://tilburgsciencehub.com/.
+- [R] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/)
+- [Make] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/)
+
+For R, make sure you have installed the following R packages:
+'install.packages(“readr”)'
+'install.packages(“dplyr”)'
+'install.packages(“ggplot2”)'
+'install.packages(“tidyverse”)'
+'install.packages(“ggpubr”)'
+'Install.packages(“car”)'
+'install.packages(“scales”)'
+'install.packages(“stargazer”)'
 
 ## Running instructions
 
