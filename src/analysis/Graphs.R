@@ -66,12 +66,12 @@ ams_mean_price_graph <- ams %>%
 cities <- c("rome", "paris", "ams", "london")
 
 for (city in cities) {
-# Generate plot object
-plot_obj <- get(paste0(city,"_mean_price_graph"))
+  # Generate plot object
+  plot_obj <- get(paste0(city,"_mean_price_graph"))
   
-# Define file name and path
-file_name <- paste0(city,"_mean_price_graph", ".pdf")
-file_path <- paste("../../gen/analysis/output/", file_name, sep="")
+  # Define file name and path
+  file_name <- paste0(city,"_mean_price_graph", ".pdf")
+  file_path <- paste("../../gen/analysis/output/", file_name, sep="")
   
-ggsave(file_path, plot = plot_obj)
+  ggsave(file_path, plot = plot_obj)
 }
