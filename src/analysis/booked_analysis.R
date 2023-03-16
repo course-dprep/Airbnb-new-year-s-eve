@@ -33,6 +33,3 @@ models_booked <- lapply(cities, function(city) {
   print(summary(model_booked))
   return(list(city=city, model_booked=model_booked))
 })
-
-
-
