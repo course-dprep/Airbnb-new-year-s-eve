@@ -15,7 +15,7 @@ We chose New Year’s eve since it is a day that is celebrated across the world 
 ## Method and Results
 
 ### Method
-Inside Airbnb provided the information needed for this research project. To analyze the effects of prices of Airbnb accommodations during a New Year's Eve in capital cities in Europe, we will use a linear regression analysis. Moreover, to analyze the effects of the bookings of Airbnb accommodations during a New Year's Eve in capital cities in Europe, we will use a logistic regression analysis.
+Inside Airbnb provided the information needed for this research project. To analyze the effects of prices of Airbnb accommodations during a New Year's Eve in capital cities in Europe, we will use a linear regression analysis. Moreover, to analyze the effects of the bookings of Airbnb accommodations during a New Year's Eve in capital cities in Europe, we will use a logistic regression analysis. The analysis will be done in RStudio, since this program allows us for preparing and analyzing the data.
 
 In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 26th) and ending five days after New Year's Eve 2022 (January 5th). To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for New Year's Eve. For the analysis, we contrast London, Paris, Amsterdam, and Rome as these are four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and bookings of the Airbnb’s.
 
@@ -32,7 +32,7 @@ In order to conduct this study, we examined data beginning five days before New 
 
 
 
-To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up and it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it and this will be saved in a file with the name complete_data.csv. Moreover, the data per city will be saved seperately in a file with the name complete_data_cityname.csv. A linear regression analysis has be used with this cleaned-up dataset to analyze the effect onthe Airbnb prices. A logistic regression has been used to determine the effect of New Year's Eve on the bookings. 
+To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up and it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it and this will be saved in a file with the name complete_data.csv. Moreover, the data per city will be saved seperately in a file with the name complete_data_cityname.csv. Analysis has been done by using RStudio. A linear regression analysis has be used with this cleaned-up dataset to analyze the effect onthe Airbnb prices. A logistic regression has been used to determine the effect of New Year's Eve on the bookings. 
 
 ### Results
 
