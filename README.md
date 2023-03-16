@@ -19,7 +19,7 @@ Inside Airbnb provided the information needed for this research project. To anal
 
 In order to conduct this study, we examined data beginning five days before New Year's Eve 2022 (December 26th) and ending five days after New Year's Eve 2022 (January 5th). To compare the impact of New Year's Eve with other, "regular" days, we made a dummy for New Year's Eve. For the analysis, we contrast London, Paris, Amsterdam, and Rome as these are four of Europe's big cities. This allows us to determine whether the city itself—such as the fact that it is a more popular city—does not have an impact on the prices and bookings of the Airbnb’s.
 
-![Schermafbeelding 2023-03-16 om 10 16 46](https://user-images.githubusercontent.com/122876103/225570752-dd10eafc-1339-424c-8a43-acb54abf60b2.png)
+![Schermafbeelding 2023-03-16 om 10 29 14](https://user-images.githubusercontent.com/122876103/225574072-b0c7ef9a-4902-49b4-b79b-b41120d44531.png)
 
 ### Variables used in the study
 
