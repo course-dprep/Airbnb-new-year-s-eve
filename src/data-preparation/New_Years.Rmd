@@ -27,12 +27,6 @@ library(tidyverse)
 library(scales)
 ```
 
-**Set the working directory**
-```{r}
-# Set the working directory
-dir.create('../../src/data-preparation')
-```
-
 ***Input***
 **Load the data**
 ```{r}
