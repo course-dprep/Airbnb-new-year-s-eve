@@ -92,7 +92,7 @@ Please follow the installation guides on http://tilburgsciencehub.com/.
 - [R] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/)
 - [Make] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/)
 
-For R, make sure you have installed the following R packages:
+For R make sure you have installed the following R packages:
 'install.packages(“readr”)'
 'install.packages(“dplyr”)'
 'install.packages(“ggplot2”)'

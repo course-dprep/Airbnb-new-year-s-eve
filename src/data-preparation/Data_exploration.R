@@ -19,3 +19,5 @@ save(lists_cities, file='list_cities.RData')
 
 # Input of your next file
 #all_cities <- load('list_cities.RData')
+
+
