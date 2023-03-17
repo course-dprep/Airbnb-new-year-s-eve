@@ -19,6 +19,22 @@ for (city in cities) {
 }
 
 ## TRANSFORMATION ##
+# Descriptive of price
+summary(complete_data$price)
+mean_price <- mean(complete_data$price)
+save(mean_price, file='../../gen/analysis/output/mean_price.RData')
+table(complete_data$price)
+histogram_prices <- hist(complete_data$price, xlab = 'price in €',ylab = 'numbers of Airbnb') 
+
+# Descriptive of new years eve
+summary(complete_data$newyearseve)
+newyearseve_number <- table(complete_data$newyearseve)
+
+# Check normality 
+set.seed(5000)
+complete_data_sample <- rnorm(5000)
+shapiro.test(complete_data_sample)
+
 # Linear regression with main effect:
 price_main <- lm(price ~ newyearseve, data = complete_data)
 summary(price_main)
@@ -36,13 +52,15 @@ price_cities <- lapply(cities, function(city) {
 price_cities2 <- lm(price ~ newyearseve + london_dum + paris_dum + ams_dum + rome_dum, data = complete_data); 
 summary(price_cities2)
 
-# model where differences in prices are shown per city compared to london
-price_city_differences <- lm(price ~ newyearseve + paris_dum + rome_dum + ams_dum, data = complete_data)
-summary(price_city_differences )
 
 ## Visualization ##
+# Plot for overall
+price_newyearseve_boxplot <- ggboxplot(data = complete_data, x="newyearseve", y="price",
+                                         color="newyearseve", palette = c("#00AFBB", "#E7B800"),
+                                         ylab= "Price", xlab="newyearseve")
+
 # Plot for different cities 
-boxplot_price_per_city <- ggplot(complete_data, aes(x=newyearseve, y=price, fill=city)) + 
+price_per_city_boxplot <- ggplot(complete_data, aes(x=newyearseve, y=price, fill=city)) + 
   geom_boxplot() +
   facet_wrap(~newyearseve, scale="free") +
   theme(axis.text.x=element_blank(),
@@ -90,5 +108,6 @@ file_name <- paste0(city,"_mean_price_graph", ".pdf")
 file_path <- paste("../../gen/analysis/output/", file_name, sep="")
 ggsave(file_path, plot = plot_obj)
 }
-ggsave(plot = boxplot_price_per_city, filename = "../../gen/analysis/output/boxplot_price_per_city.pdf")
-save(price_main, price_cities, price_cities2, price_city_differences, file='../../gen/analysis/output/model_results.RData') 
+ggsave(plot = price_newyearseve_boxplot, filename = "../../gen/analysis/output/price_newyearseve_boxplot.pdf")
+ggsave(plot = price_per_city_boxplot, filename = "../../gen/analysis/output/price_per_city_boxplot.pdf")
+save(price_main, price_cities, price_cities2, file='../../gen/analysis/output/model_results.RData') 
