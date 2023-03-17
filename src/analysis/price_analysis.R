@@ -10,7 +10,7 @@ library(stargazer)
 ## INPUT ##
 complete_data <- read_csv("../../gen/data-preparation/output/complete_data.csv")
 
-#import the data per cities
+# Import the data per cities
 cities <- c("rome", "paris", "ams", "london")
 
 for (city in cities) {
@@ -22,7 +22,6 @@ for (city in cities) {
 # Linear regression with main effect:
 price_main <- lm(price ~ newyearseve, data = complete_data)
 summary(price_main)
-
 
 # Model per city price: linear regression
 # Loop through each city and generate the model and summary for price
@@ -49,7 +48,7 @@ boxplot_price_per_city <- ggplot(complete_data, aes(x=newyearseve, y=price, fill
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
-#create graph with mean price for London
+# create graph with mean price for London
 london_mean_price_graph <- complete_data_london %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -57,7 +56,7 @@ london_mean_price_graph <- complete_data_london %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_london$price), color="black")
 
-#create graph with mean price for Paris
+# create graph with mean price for Paris
 paris_mean_price_graph <- complete_data_paris %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -65,7 +64,7 @@ paris_mean_price_graph <- complete_data_paris %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_paris$price), color="black")
 
-#create graph with mean price for Rome
+# create graph with mean price for Rome
 rome_mean_price_graph <- complete_data_rome %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -73,7 +72,7 @@ rome_mean_price_graph <- complete_data_rome %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_rome$price), color="black")
 
-#create graph with mean price for Amsterdam
+# create graph with mean price for Amsterdam
 ams_mean_price_graph <- complete_data_ams %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -82,7 +81,7 @@ ams_mean_price_graph <- complete_data_ams %>%
   geom_hline(yintercept = mean(complete_data_ams$price), color="black")
 
 
-##OUTPUT##
+## OUTPUT ##
 cities <- c("rome", "paris", "ams", "london")
 
 for (city in cities) {
@@ -93,4 +92,3 @@ ggsave(file_path, plot = plot_obj)
 }
 ggsave(plot = boxplot_price_per_city, filename = "../../gen/analysis/output/boxplot_price_per_city.pdf")
 save(price_main, price_cities, price_cities2, price_city_differences, file='../../gen/analysis/output/model_results.RData') 
-
