@@ -95,11 +95,13 @@ The main aim of this to have a basic structure, which can be easily adjusted to 
 3. Present results in a final pdf generated
 
 ## Dependencies
-Please follow the installation guides on http://tilburgsciencehub.com/.
-- [R] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/)
-- [Make] (https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/)
+Please follow the installation guides on http://tilburgsciencehub.com/. :
+
+- R. [Installation guides](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/)
+- Make. [Installation guides](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/)
 
 For R, make sure you have installed the following R packages:
+```
 'install.packages(“readr”)'
 'install.packages(“dplyr”)'
 'install.packages(“ggplot2”)'
@@ -108,6 +110,7 @@ For R, make sure you have installed the following R packages:
 'Install.packages(“car”)'
 'install.packages(“scales”)'
 'install.packages(“stargazer”)'
+```
 
 ## Running instructions
 
