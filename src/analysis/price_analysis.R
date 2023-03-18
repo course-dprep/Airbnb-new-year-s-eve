@@ -38,6 +38,7 @@ shapiro.test(complete_data_sample)
 # Linear regression with main effect:
 price_main <- lm(price ~ newyearseve, data = complete_data)
 summary(price_main)
+save(price_main, file='../../gen/analysis/output/price_main.RData')
 
 # Model per city price: linear regression
 # Loop through each city and generate the model and summary for price
@@ -52,7 +53,6 @@ price_cities <- lapply(cities, function(city) {
 price_cities2 <- lm(price ~ newyearseve + london_dum + paris_dum + ams_dum + rome_dum, data = complete_data); 
 summary(price_cities2)
 
-
 ## Visualization ##
 # Plot for overall
 price_newyearseve_boxplot <- ggboxplot(data = complete_data, x="newyearseve", y="price",
@@ -66,7 +66,7 @@ price_per_city_boxplot <- ggplot(complete_data, aes(x=newyearseve, y=price, fill
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
-# create graph with mean price for London
+# Create graph with mean price for London
 london_mean_price_graph <- complete_data_london %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -74,7 +74,7 @@ london_mean_price_graph <- complete_data_london %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_london$price), color="black")
 
-# create graph with mean price for Paris
+# Create graph with mean price for Paris
 paris_mean_price_graph <- complete_data_paris %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -82,7 +82,7 @@ paris_mean_price_graph <- complete_data_paris %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_paris$price), color="black")
 
-# create graph with mean price for Rome
+# Create graph with mean price for Rome
 rome_mean_price_graph <- complete_data_rome %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
@@ -90,7 +90,7 @@ rome_mean_price_graph <- complete_data_rome %>%
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_rome$price), color="black")
 
-# create graph with mean price for Amsterdam
+# Create graph with mean price for Amsterdam
 ams_mean_price_graph <- complete_data_ams %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
