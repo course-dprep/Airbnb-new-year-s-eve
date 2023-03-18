@@ -4,6 +4,7 @@ author: "Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai, Hilal 
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
     pdf_document: default
+    html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -19,9 +20,11 @@ library(data.table)
 library(dplyr)
 library(tidyverse)
 library(stargazer)
+tinytex::install_tinytex(force = TRUE)
 ```
 
 ***Introduction***
+
 In order to answer our research questions, we used data from InsideAirbnb to collect listing and calendar data from four major European cities, namely London, Paris, Amsterdam and Rome. After extracting the data sets for each city, we cleaned these data to make sure columns with missing data were removed and variables related to the analysis were included. Lastly, the data sets from the individual cities were also merged into one complete data set.
 
 In this report, we provide a description of variables used in the analysis, including relevant summary statistics. Furthermore, the report includes several plots to visualize the key variables from the analysis. The main section of the report contains two analyses that answer our research questions, where the results are also discussed. Ultimately, a conclusion on the effect of New Year's Eve on Airbnb listings is drawn based on these analyses.
@@ -32,7 +35,8 @@ The following questions will be answered:
 
 2. Does the New Year’s Eve increase the likelihood of booking on Airbnb in capital cities in Europe?
 
-***Dependent Variable Descriptives***
+***Dependent Variable Descriptive***
+
 **Price**
 ```{r echo=FALSE}
 load('../../gen/analysis/output/mean_price.RData')
@@ -79,6 +83,7 @@ for (city in cities) {
 ```
 
 **Price analysis**
+
 This analysis will answer the following question: "What is the effect of New Year’s eve on the price of Airbnb listings?" 
 
 In order to answer this question, we choose to run a linear regression as we are going to examine the relationship between a metric dependent variable and a metric independent variables. In addition, we also want to observe what is the effect of different cities, which is non-metric moderator variable, on the relationship between New Year's Eve and price.
@@ -99,6 +104,7 @@ for(city in cities){
 Lastly, we include the interaction between New Year’s Eve and cities. The p-value is less than 0.05 when cities effect is included in the relationship, which we can conclude that null hypothesis can be rejected. The price will significantly be affected by New Year’s Eve in the cities we studied.    
 
 **Bookings analysis**
+
 This analysis will answer the following question: "Does the New Year’s Eve increase the likelihood of booking on Airbnb in capital cities in Europe?" A logistic regression is performed here as we set dependent variable "booked" as dummy variable. 
 
 First, we perform a logistic regression for all cities combined. The logistic regression gave us a P-value less than 0.05. Therefore, with a significance of 0.05, the H0 can be rejected. A significant relation between New Year’s Eve and the likelihood of booking on Airbnb has been proved. When looking at the exponents of the logistic regression, we can also conclude that on New Year’s Eve, the odds of a Airbnb being booked, increases with 1.77.
@@ -113,14 +119,24 @@ exp(booked_logistic$coefficients)
 ```
 
 ```{r table 2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-stargazer(booked_logistic, apply.coef=exp, apply.se = exp, type="html", title="Effect of New Years Eve on Number of Bookings of Airbnb Listings",
+stargazer(booked_logistic, 
+          apply.coef=exp, 
+          apply.se = exp, 
+          type="latex", 
+          title="Effect of New Years Eve on Number of Bookings of Airbnb Listings",
           dep.var.caption = "Number of bookings",
           dep.var.labels="",
           column.labels = 'Total',
-          covariate.labels="New years eve", out='../../gen/analysis/output/model_bookings.html')
+          covariate.labels="New Year's Eve",
+          header = FALSE,
+          float = TRUE,
+          no.space = TRUE,
+          table.placement = "h")
+
 #table is only visibly in pdf knit
 ```
 
 ***Conclusion***
+
 Overall, to answer our research questions, both H0 have been rejected by p-value < 0.05. The significant relation has been found between New Year's Eve and the prices of Airbnb listings. Besides, a significant relation also has been found between New Year's Eve and the changes of an Airbnb listing being booked.
 
