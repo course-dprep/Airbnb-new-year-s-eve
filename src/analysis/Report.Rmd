@@ -10,7 +10,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ```{r include=FALSE}
 library(broom)
 library(tidyr)
