@@ -38,6 +38,10 @@ In order to conduct this study, we examined data beginning five days before New 
 
 To build a new dataset, the listing- and calendar datasets of Rome, Amsterdam, Londen and Paris, retrieved from insideairbnb, are combined. This new dataset is cleaned up and it is checked for relevant elements before analysis. These sets enable analysis for every listing for every specific day, allowing for price comparisons between dates. To supplement the calendar dataset with additional data, the listings dataset will be combined with it and this will be saved in a file with the name complete_data.csv. Moreover, the data per city will be saved seperately in a file with the name complete_data_cityname.csv. Analysis has been done by using RStudio. A linear regression analysis has be used with this cleaned-up dataset to analyze the effect onthe Airbnb prices. A logistic regression has been used to determine the effect of New Year's Eve on the bookings. 
 
+### Relevance
+
+This research project gives valuable insights in the prices and availablity of Airbnb's with New Year's Eve compared between multiple capital cities in Europe. For customers of Airbnb, this research gives them insights into the prices of an Airbnb with New Year's eve and the availability. Based on the results, predictions can be made for the next year.
+
 ### Results
 
 **Price**: H1: New Year’s Eve influences the prices of Airbnb listings. 
@@ -119,6 +123,7 @@ All of the data, analysis and plots can be run using the main makefile. R will m
 First, type "make -n" in the Terminal. R wil then show you everything it will run. If you type in "make", R wil run all the code. This can take some time. When R is done, all the output will be generated.
 
 ## More resources
+* Insideairbnb (http://insideairbnb.com/get-the-data/)
 
 ## About
 
@@ -132,7 +137,7 @@ This repository was created as a part of the Data Preparation and Workflow Manag
 
 
 ## Notes
-- `make clean` removes all unnecessary temporary files. 
-- Tested under Linux Mint (should work in any linux distro, as well as on Windows and Mac) 
-- IMPORTANT: In `makefile`, when using `\` to split code into multiple lines, no space should follow `\`. Otherwise Gnu make aborts with error 193. 
-- Many possible improvements remain. Comments and contributions are welcome!
+* `make clean` removes all unnecessary temporary files. 
+* Tested under Linux Mint (should work in any linux distro, as well as on Windows and Mac) 
+* IMPORTANT: In `makefile`, when using `\` to split code into multiple lines, no space should follow `\`. Otherwise Gnu make aborts with error 193. 
+* Many possible improvements remain. Comments and contributions are welcome!
