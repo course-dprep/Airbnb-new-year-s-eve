@@ -23,7 +23,13 @@ for (city in cities) {
 # Descriptive of booked
 summary(complete_data$booked)
 mean_booked <- mean(complete_data$booked)
-save(mean_booked, file = '../../gen/data-preparation/output/mean_booked.RData')
+save(mean_booked, file = '../../gen/analysis/output/mean_booked.RData')
+
+complete_data_newyearseve <- complete_data %>% filter (newyearseve==1)
+complete_data_newyearseve %>% count(complete_data_newyearseve$booked)
+complete_data_nonnewyearseve <- complete_data %>% filter (newyearseve==0)
+complete_data_nonnewyearseve %>% count(complete_data_nonnewyearseve$booked)
+
 
 # Checked normality
 set.seed(5000)
@@ -33,6 +39,7 @@ shapiro.test(complete_data_sample)
 ## Logistic regression for total bookings
 booked_logistic <- glm(booked ~ newyearseve, complete_data, family = binomial)
 summary(booked_logistic)
+exp(booked_logistic$coefficients)
 histogram_total_booked <- hist(complete_data$booked, xlab = 'booked') 
 
 # Model fit of total bookings 
@@ -50,12 +57,9 @@ booked_cities_logistic <- lapply(cities, function(city) {
 })
 
 ## OUTPUT ##
-pdf(file="../../gen/analysis/output/histogram_total_booked.pdf")
-dev.off()
 stargazer(booked_logistic, apply.coef=exp, apply.se = exp, type="html", title="Effect of New Years Eve on Number of Bookings of Airbnb Listings",
           dep.var.caption = "Number of bookings",
           dep.var.labels="",
           column.labels = 'Total',
           covariate.labels="New years eve", out='../../gen/analysis/output/model_bookings.html')
-
 
