@@ -121,14 +121,25 @@ For R, make sure you have installed the following R packages:
 It is suggested to use the make file to execute the code. Please adhere to the instructions below:
 1.	Fork this repository
 2.	Open your command line/terminal and run:
+```
 git clone https://github.com/{your username}/Airbnb-new-years-eve.git
+```
 3.	Set your working directory to:
+```
 Airbnb-new-years-eve
-4.	First, type ‘make -n’ in the terminal. R will then demonstrate everything it will run. 
+```
+4.	First, type ‘make -n’ in the terminal. R will then demonstrate everything it will run:
+```
+make -n
+```
 5.	Run make.  All code will be executed by make. If necessary, R will make sure the right packages are installed. Windows users will need to install Make in order for the main makefile to run. Make will be installed automatically for Mac and Linux OS users. After running make, all output will be produced. The following command can be used to run make after installing Make:
-Make
+```
+make
+```
 6.	Execute the following code in the command line/terminal to clean the data of any raw and unnecessary data files produced during the pipeline:
+```
 make clean
+```
 
 Alternatively, the scripts and files might be executed in the following order:
 
