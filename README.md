@@ -5,7 +5,7 @@ Welcome to our research project!
 ![image](https://user-images.githubusercontent.com/123902060/220652672-82bcdd9e-0f1a-4cfe-bdeb-f8dfcbed94f1.png)
 
 ## Motivation
-“May the new year take you to place you have never been before”
+“May the new year take you to places you have never been before”
 
 However, traveling to new places requires a lot of planning and coordination, such as finding the right accommodation. As we all know, searching for accommodation, especially in capital cities, can be quite frustrating, especially during the holidays. Thanks to Airbnb, offering many affordable options, this has become a thing of the past. 
 
@@ -104,16 +104,17 @@ Please follow the installation guides on http://tilburgsciencehub.com/. :
 - R. [Installation guides](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/)
 - Make. [Installation guides](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/)
 
+
 For R, make sure you have installed the following R packages:
 ```
-'install.packages(“readr”)'
-'install.packages(“dplyr”)'
-'install.packages(“ggplot2”)'
-'install.packages(“tidyverse”)'
-'install.packages(“ggpubr”)'
-'Install.packages(“car”)'
-'install.packages(“scales”)'
-'install.packages(“stargazer”)'
+install.packages(“readr”)
+install.packages(“dplyr”)
+install.packages(“ggplot2”)
+install.packages(“tidyverse”)
+install.packages(“ggpubr”)
+install.packages(“car”)
+install.packages(“scales”)
+install.packages(“stargazer”)
 ```
 
 ## Running instructions
