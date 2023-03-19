@@ -7,8 +7,9 @@ analysis: data-preparation
 		make -C src/analysis
 		
 clean:
-	R -e "unlink('data/*.*')"
-	R -e "unlink('gen/*.*', recursive = TRUE)"
+		R -e "unlink('data/*.*')"
+		R -e "unlink('gen/*.*', recursive = TRUE)"
 
 paper: data-preparation 
 		Rscript -e "rmarkdown::render('gen/paper/New_Years.Rmd')"
+		Rscript -e "rmarkdown::render("Report.Rmd")"
