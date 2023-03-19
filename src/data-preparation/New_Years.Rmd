@@ -1,8 +1,8 @@
 ---
 title: "NewYears"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 date: "2023-03-01"
 ---
 
@@ -11,36 +11,29 @@ date: "2023-03-01"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Install packages**
-```{r}
-# Install package
-install.packages("dplyr")
-install.packages("tidyverse")
-install.packages("scales")
-```
-
 **Load packages**
 ```{r}
 # Load packages
 library(dplyr)
 library(tidyverse)
 library(scales)
+
 ```
 
 ***Input***
 **Load the data**
 ```{r}
-# Define the list of cities and filenames
+# Define the list of cities and file names
 cities <- c("ams", "london", "paris", "rome")
 filenames <- paste0("listings-", cities, ".csv.gz")
 
 # Loop through each city and read in the data
 for (i in seq_along(cities)) {
   # Read in the listings data
-  assign(paste0("list_", cities[i]), read_csv(filenames[i]))
+  assign(paste0("list_", cities[i]),read_csv(gzfile(paste0('../../data/',filenames[i]))))
   
   # Read in the calendar data
-  assign(paste0("cal_", cities[i]), read_csv(paste0("calendar-", cities[i], ".csv.gz")))
+  assign(paste0("cal_", cities[i]), read_csv(gzfile(paste0('../../data/',"calendar-", cities[i], ".csv.gz"))))
 }
 ```
 
@@ -60,7 +53,7 @@ price_summary <- data.frame(city = character(),
 # loop through each file and calculate the summary statistics
 # A filter (price above 0) has been applied to remove outliers
 for (i in 1:length(file_names)) {
-  list_data <- read.csv(file_names[i])
+  list_data <- read_csv(gzfile(paste0('../../data/',file_names[i])))
   list_prices <- list_data$price[!is.na(list_data$price)]
   list_prices <- as.numeric(gsub("\\$", "", list_prices))
   list_prices <- list_prices[!is.na(list_prices)]
