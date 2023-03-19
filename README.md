@@ -60,30 +60,22 @@ The directory structure is as follow:
 ```
 ├── src
 |   ├── analysis
-|       ├── analyze.R
-|       ├── Graphs.R
-|       ├── update_input.R
-|       ├── regression
+|       ├── booked_analysis.R
+|       ├── price_analysis.R
 |       ├── makefile
+|       ├── Report.Rmd
 |   ├── data-preparation
-|       ├── Data_exploration.R
 |       ├── Install packages.R
 |       ├── New_Years.Rmd
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
-|   ├── paper
-|       ├── paper.tex
-|       ├── tables.R
 |   ├── clean-up.R
 ├── gen
 |   ├── analysis
 |       ├── output
 |       ├── temp
 |   ├── data-preparation      
-|       ├── output
-|       ├── temp
-|   ├── paper      
 |       ├── output
 |       ├── temp
 ├── .gitignore
