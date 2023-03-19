@@ -1,15 +1,15 @@
 INPUT = ../../gen/data-preparation/output
 OUTPUT = ../../gen/analysis/output
-ANALYSIS = ../src/analysis/
+ANALYSIS = ../../src/analysis
+CSV_FILES := $(wildcard $(INPUT)/complete_data_*.csv)
 
-all: $(OUTPUT)/model_results.RData $(INPUT)/complete_data.csv $(INPUT)/complete_data_london.csv $(INPUT)/complete_data_paris.csv $(INPUT)/complete_data_ams.csv $(INPUT)/complete_data_rome.csv 
+all: $(OUTPUT)/price_newyearseve_boxplot.pdf $(OUTPUT)/price_per_city_boxplot.pdf $(OUTPUT)/model_results.RData $(OUTPUT)/london_mean_price_graph $(OUTPUT)/paris_mean_price_graph $(OUTPUT)/ams_mean_price_graph $(OUTPUT)/rome_mean_price_graph $(OUTPUT)/mean_booked.RData $(ANALYSIS)/Report.pdf
 
-$(OUTPUT)/model_results.RData: analyzeR
-		R --vanilla < analyze.R
+$(OUTPUT)/mean_booked.RData: $(INPUT)/complete_data.csv booked_analysis.R
+		R --vanilla < booked_analysis.R
+
+$(OUTPUT)/price_newyearseve_boxplot.pdf $(OUTPUT)/price_per_city_boxplot.pdf $(OUTPUT)/model_results.RData $(OUTPUT)/london_mean_price_graph $(OUTPUT)/paris_mean_price_graph $(OUTPUT)/ams_mean_price_graph $(OUTPUT)/rome_mean_price_graph: $(INPUT)/complete_data.csv $(INPUT)/complete_data_*.csv $(INPUT)/complete_data.csv price_analysis.R
+		R --vanilla < price_analysis.R
 	
-$(INPUT)/complete_data.csv $(INPUT)/complete_data_london.csv $(INPUT)/complete_data_paris.csv $(INPUT)/complete_data_ams.csv $(INPUT)/complete_data_rome.csv: analyze.R
-		R --vanilla < analyze.R
-
-#need to add this still     
-#$(ANALYSIS)/analysis.pdf : analysis.Rmd
-        #Rscript -e 'rmarkdown::render("analysis.Rmd")'
+$(ANALYSIS)/Report.pdf: $(OUTPUT)/price_newyearseve_boxplot.pdf $(OUTPUT)/price_per_city_boxplot.pdf $(OUTPUT)/model_results.RData $(OUTPUT)/london_mean_price_graph $(OUTPUT)/paris_mean_price_graph $(OUTPUT)/ams_mean_price_graph $(OUTPUT)/rome_mean_price_graph Report.Rmd
+		Rscript -e 'rmarkdown::render("Report.Rmd")'
