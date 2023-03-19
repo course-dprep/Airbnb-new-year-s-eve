@@ -118,9 +118,27 @@ For R, make sure you have installed the following R packages:
 
 ## Running instructions
 
-All of the data, analysis and plots can be run using the main makefile. R will make sure the proper packages will be installed if necessary. To make the main makefile run, Windows OS users will have to install [Make](https://gnuwin32.sourceforge.net/packages/make.htm). For Mac and Linux OS users, this will automatically be installed.When Make is installed, it is possible to run the makefile in RStudio. 
+It is suggested to use the make file to execute the code. Please adhere to the instructions below:
+1.	Fork this repository
+2.	Open your command line/terminal and run:
+git clone https://github.com/{your username}/Airbnb-new-years-eve.git
+3.	Set your working directory to:
+Airbnb-new-years-eve
+4.	First, type ‘make -n’ in the terminal. R will then demonstrate everything it will run. 
+5.	Run make.  All code will be executed by make. If necessary, R will make sure the right packages are installed. Windows users will need to install Make in order for the main makefile to run. Make will be installed automatically for Mac and Linux OS users. After running make, all output will be produced. The following command can be used to run make after installing Make:
+Make
+6.	Execute the following code in the command line/terminal to clean the data of any raw and unnecessary data files produced during the pipeline:
+make clean
 
-First, type "make -n" in the Terminal. R wil then show you everything it will run. If you type in "make", R wil run all the code. This can take some time. When R is done, all the output will be generated.
+Alternatively, the scripts and files might be executed in the following order:
+
+1.	Install packages: ../../src/data-preparation/Install_packages.R
+2.	Download data: ../../src/data-preparation/download_data.R
+3.	Clean data: ../../src/data-preparation/clean_data.R
+4.	Explore data: ../../src/data-preparation/New_Years.Rmd
+5.	Booked analysis: ../../src/analysis/booked_analysis.R
+6.	Price analysis: ../../src/analysis/price_analysis.R
+7.	Final report with analysis output: ../../src/analysis/Report.Rmd
 
 ## More resources
 * Insideairbnb (http://insideairbnb.com/get-the-data/)
