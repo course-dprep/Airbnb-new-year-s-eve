@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 **Load packages**
-```{r}
+```{r include=FALSE}
 # Load packages
 library(dplyr)
 library(tidyverse)
@@ -22,7 +22,7 @@ library(scales)
 
 ***Input***
 **Load the data**
-```{r}
+```{r include=FALSE}
 # Define the list of cities and file names
 cities <- c("ams", "london", "paris", "rome")
 filenames <- paste0("listings-", cities, ".csv.gz")
@@ -40,7 +40,7 @@ for (i in seq_along(cities)) {
 ***Transformation***
 **Summary statistics on the price of the cities for the listings dataset**
 
-```{r}
+```{r echo=TRUE}
 file_names <- c( 'listings-ams.csv.gz', "listings-london.csv.gz", "listings-paris.csv.gz", "listings-rome.csv.gz")
 city_names <- c('Amsterdam', 'London', 'Paris', 'Rome')
 
@@ -71,7 +71,7 @@ for (i in 1:length(file_names)) {
 price_summary
 ```
 
-
+#dit kan weg
 ```{r}
 #removing the dollar sign from the "price" column in the calendar data
 city_names <- c("ams", "london", "paris", "rome")
