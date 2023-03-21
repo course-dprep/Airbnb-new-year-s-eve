@@ -70,7 +70,11 @@ The directory structure is as follow:
 |       ├── Report.Rmd
 |   ├── data-preparation
 |       ├── Install packages.R
+<<<<<<< HEAD
 |       ├── New_Years.Rmd
+=======
+|       ├── data_exploration.Rmd
+>>>>>>> 83f766d49a7d2cb01a40082d000b05815d0e6d6f
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
@@ -143,10 +147,9 @@ Alternatively, the scripts and files might be executed in the following order:
 1.	Install packages: ../../src/data-preparation/Install_packages.R
 2.	Download data: ../../src/data-preparation/download_data.R
 3.	Clean data: ../../src/data-preparation/clean_data.R
-4.	Explore data: ../../src/data-preparation/New_Years.Rmd
+4.	Explore data: ../../src/data-preparation/data_exploration.Rmd
 5.	Booked analysis: ../../src/analysis/booked_analysis.R
 6.	Price analysis: ../../src/analysis/price_analysis.R
-7.	Final report with analysis output: ../../src/analysis/Report.Rmd
 
 ## More resources
 * Insideairbnb (http://insideairbnb.com/get-the-data/)

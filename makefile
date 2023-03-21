@@ -1,6 +1,11 @@
+packages := readr dplyr ggplot2 tidyverse ggpubr car scales stargazer
+
 all: analysis data-preparation
 
-data-preparation: 
+install:
+	Rscript -e 'options(repos = "https://cloud.r-project.org"); source("Install_packages.R"); install.packages(c($(PACKAGES:%="%")))'
+
+data-preparation: install
 		make -C src/data-preparation
 		
 analysis: data-preparation
