@@ -61,5 +61,5 @@ stargazer(booked_logistic, apply.coef=exp, apply.se = exp, type="html", title="E
           dep.var.caption = "Number of bookings",
           dep.var.labels="",
           column.labels = 'Total',
-          covariate.labels="New years eve", out='../../gen/analysis/output/model_bookings.html')
+          covariate.labels="New years eve", out='../../gen/analysis/output/bookings_logistic_table.html')
 
