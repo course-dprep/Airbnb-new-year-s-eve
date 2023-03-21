@@ -71,12 +71,11 @@ for(city in cities){
            mutate(newyearseve = ifelse(date=="2022-12-31",1,0)))
 }
 
-#Add city_dum variable in calendar
-for (city in cities) {
-  calendar <- get(paste0("calendar_", city, "_filtered3"))
-  calendar[[paste0(city, "_dum")]] <- city
-  assign(paste0("calendar_", city, "_filtered3"), calendar)
-}
+# Add city_dum variable in calendar
+calendar_london_filtered3$london_dum <- "london"
+calendar_paris_filtered3$paris_dum <- "paris"
+calendar_ams_filtered3$ams_dum <- "ams"
+calendar_rome_filtered3$rome_dum <- "rome"
 
 # Add city variable in listing
 list_london_filtered$city <- "London"
@@ -87,11 +86,11 @@ list_rome_filtered$city <- "Rome"
 # Merged calendar of all cities with bind the rows
 merged_calendar <- bind_rows(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
 
-#City_dum as dummy variable
-for (i in seq_along(cities)) {
-  city <- cities[i]
-  merged_calendar[[paste0(city, "_dum")]] <- ifelse(merged_calendar[[paste0(city, "_dum")]] == city, 1, 0)
-}
+# City_dum as dummy variable
+merged_calendar$london_dum <- ifelse(merged_calendar$london_dum=='london',1,0)
+merged_calendar$paris_dum <- ifelse(merged_calendar$paris_dum=='paris',1,0)
+merged_calendar$ams_dum <- ifelse(merged_calendar$ams_dum=='ams',1,0)
+merged_calendar$rome_dum <- ifelse(merged_calendar$rome_dum=='rome',1,0)
 
 # Set NA in city_dum column as 0
 merged_calendar<- merged_calendar%>%mutate_at(c('london_dum','paris_dum','ams_dum','rome_dum'), ~replace_na(.,0))
