@@ -11,96 +11,58 @@ library(car)
 # Create a vector of city names
 cities <- c("london", "paris", "ams", "rome")
 
-# Read in the listing and calendar data for the current city
-for (city in cities) {
-  assign(paste0("listings-", city), read_csv(gzfile(paste0('../../data/',"listings-", city, ".csv.gz"))))
-  assign(paste0("calendar-", city), read_csv(gzfile(paste0('../../data/',"calendar-", city, ".csv.gz"))))
-}
+# Merge all listings and calendar data for the current cities
+listings <- purrr::map_df(cities, ~ read_csv(gzfile(paste0('../../data/',"listings-", .x, ".csv.gz"))), .id = "city")
+calendar <- purrr::map_df(cities, ~ read_csv(gzfile(paste0('../../data/',"calendar-", .x, ".csv.gz"))), .id = "city")
 
 ## Data Selection ##
-# Read in the listing and calendar data for the current city
-for (city in cities) {
-  assign(paste0("list_", city, "_filtered"), get(paste0("listings-", city)) %>% select(id, host_id, host_location, neighbourhood))
-  assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar-", city)) %>% select(listing_id, date, available, price, minimum_nights))
-}
+# Select relevant columns for listings and calendar data for the current cities
+listings_filtered <- listings %>% select(city, id, host_id, host_location, neighbourhood)
+calendar_filtered <- calendar %>% select(city, listing_id, date, available, price, minimum_nights)
 
-##TRANSFORMATION##
+## TRANSFORMATION ##
 # Clean the listings file
-# Rename the "id" column to "listing_id" for the current city's filtered listing data 
-for (city in cities) {
-  assign(paste0("list_", city, "_filtered"), get(paste0("list_", city, "_filtered")) %>% rename(listing_id = id))
-}
+# Rename the "id" column to "listing_id" for the current cities' filtered listing data 
+listings_filtered <- listings_filtered %>% rename(listing_id = id)
 
-# Clean the calender file
-# Rename the "available" column to "booked" and the "date" column to "date_old" for the current city's filtered calendar data 
-for (city in cities) {
-  assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar_", city, "_filtered")) %>% 
-           rename(booked = available, date_old = date))
-}
+# Clean the calendar file
+# Rename the "available" column to "booked" and the "date" column to "date_old" for the current cities' filtered calendar data 
+calendar_filtered <- calendar_filtered %>% rename(booked = available, date_old = date)
 
 # Create a dummy variable "booked" for the current cities' filtered calendar data
-for (city in cities) {
-  assign(paste0("calendar_", city, "_filtered"), get(paste0("calendar_", city, "_filtered")) %>% 
-           mutate(booked = ifelse(booked == "FALSE", 1, 0)))
-}
+calendar_filtered <- calendar_filtered %>% mutate(booked = ifelse(booked == "FALSE", 1, 0))
 
 # Change type of date to a date 
-for(city in cities){
-  calendar_filtered <- get(paste0("calendar_", city, "_filtered"))
-  calendar_filtered <- calendar_filtered %>% group_by(date_old) %>% mutate(date = as.Date(date_old))
-  calendar_filtered2 <- c('listing_id', 'date', 'booked', 'price', 'minimum_nights')
-  calendar_filtered2 <- calendar_filtered[,which(colnames(calendar_filtered)%in%calendar_filtered2)]
-  assign(paste0("calendar_", city, "_filtered"), calendar_filtered)
-  assign(paste0("calendar_", city, "_filtered2"), calendar_filtered2)
-}
+calendar_filtered <- calendar_filtered %>% group_by(city) %>% mutate(date = as.Date(date_old)) %>% ungroup() %>% 
+  select(city, listing_id, date, booked, price, minimum_nights)
 
 # Filter for time period (5 days before & after new years eve)
 start_date <- "2022-12-26"
 end_date <- "2023-01-05"
 
-# Loop over cities and filter calendar data for time period
-for(city in cities) {
-  calendar_filtered <- get(paste0("calendar_", city, "_filtered2"))
-  assign(paste0("calendar_", city, "_filtered3"), calendar_filtered[calendar_filtered$date >= start_date & calendar_filtered$date <= end_date, ])
-}
+# Filter calendar data for time period for each city
+calendar_filtered <- calendar_filtered %>% filter(date >= start_date & date <= end_date)
 
 # Add New Years Eve as dummy variable 
-for(city in cities){
-  assign(paste0("calendar_", city, "_filtered3"), 
-         get(paste0("calendar_", city, "_filtered3")) %>% 
-           mutate(newyearseve = ifelse(date=="2022-12-31",1,0)))
-}
+calendar_filtered <- calendar_filtered %>% mutate(newyearseve = ifelse(date=="2022-12-31",1,0))
 
 # Add city_dum variable in calendar
-calendar_london_filtered3$london_dum <- "london"
-calendar_paris_filtered3$paris_dum <- "paris"
-calendar_ams_filtered3$ams_dum <- "ams"
-calendar_rome_filtered3$rome_dum <- "rome"
+calendar_filtered <- calendar_filtered %>% mutate(across(city, ~if_else(. == city, 1, 0), .names = "{.col}_dum"))
 
-# Add city variable in listing
-list_london_filtered$city <- "London"
-list_paris_filtered$city <- "Paris"
-list_ams_filtered$city <- "Amsterdam"
-list_rome_filtered$city <- "Rome"
+# Add city variable in listings
+listings_filtered <- listings_filtered %>% mutate(city = tolower(city))
 
-# Merged calendar of all cities with bind the rows
-merged_calendar <- bind_rows(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
-
-# City_dum as dummy variable
-merged_calendar$london_dum <- ifelse(merged_calendar$london_dum=='london',1,0)
-merged_calendar$paris_dum <- ifelse(merged_calendar$paris_dum=='paris',1,0)
-merged_calendar$ams_dum <- ifelse(merged_calendar$ams_dum=='ams',1,0)
-merged_calendar$rome_dum <- ifelse(merged_calendar$rome_dum=='rome',1,0)
-
-# Set NA in city_dum column as 0
-merged_calendar<- merged_calendar%>%mutate_at(c('london_dum','paris_dum','ams_dum','rome_dum'), ~replace_na(.,0))
+# Merge calendar of all cities with bind the rows
+merged_calendar <- calendar_filtered %>% 
+  select(-city_dum) %>% 
+  pivot_wider(names_from = city, values_from = c(date, booked, newyearseve), names_prefix = paste("", "_")) %>% 
+  mutate(across(ends_with("_dum"), ~if_else(. == 1, str_replace(., "_dum", ""), "")))
 
 # Merged listing of all cities with bind the rows
-merged_listing <- bind_rows(list_london_filtered, list_paris_filtered, list_ams_filtered, list_rome_filtered)
+merged_listing <- listings_filtered
 
 # Merged calendar and listing
 complete_data_withNA <- left_join(merged_calendar, merged_listing, by=c('listing_id'))
-
 
 ## TRANSFORMATION of complete_data ##
 # Remove $ symbol of Price column and convert to numeric variable
