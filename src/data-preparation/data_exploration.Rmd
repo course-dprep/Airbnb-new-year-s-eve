@@ -272,7 +272,7 @@ ggplot(list_rome, aes(x = room_type)) +
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(list_ams, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Amsterdam") +
@@ -283,7 +283,7 @@ ggplot(list_ams, aes(x = room_type)) +
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(list_london, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("London") +
@@ -294,7 +294,7 @@ ggplot(list_london, aes(x = room_type)) +
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(list_paris, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Paris") +
@@ -305,7 +305,7 @@ ggplot(list_paris, aes(x = room_type)) +
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(list_rome, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Rome") +
