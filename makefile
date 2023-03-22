@@ -16,6 +16,6 @@ clean:
 		R -e "unlink('gen/*.*', recursive = TRUE)"
 
 paper: data-preparation 
-		Rscript -e "rmarkdown::render('gen/paper/data_exploration.Rmd')"
+		Rscript -e "rmarkdown::render('src/data-preparation/data_exploration.Rmd')"
 		Rscript -e "rmarkdown::render("Report.Rmd")"
 	
