@@ -1,17 +1,20 @@
 ---
-title: "NewYears"
+title: "New Year's Eve Data Exploration"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
+message: FALSE
+warning: FALSE
+
 date: "2023-03-01"
 ---
 
-***Setup***
+<!--Setup-->
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Load packages**
+<!--Load packages-->
 ```{r include=FALSE}
 # Load packages
 library(dplyr)
@@ -21,8 +24,8 @@ library(data.table)
 
 ```
 
-***Input***
-**Load the data**
+<!--Input-->
+<!--Load the data-->
 ```{r include=FALSE}
 # Define the list of cities and file names
 cities <- c("ams", "london", "paris", "rome")
@@ -38,7 +41,8 @@ for (i in seq_along(cities)) {
 }
 ```
 
-**Subset of the listings dataset for all cities**
+<!--Transformation-->
+<!--subset lists of the city from the listing data-->
 ```{r, echo=FALSE}
 #subset lists of the city from the listing data
 subset_list_ams <- data.frame(
@@ -49,6 +53,7 @@ subset_list_ams <- data.frame(
   room_type = list_ams$room_type,
   price = list_ams$price,
   minimum_nights = list_ams$minimum_nights,
+  beds = list_ams$beds,
   city = "Amsterdam"
 )
 
@@ -60,6 +65,7 @@ subset_list_london <- data.frame(
   room_type = list_london$room_type,
   price = list_london$price,
   minimum_nights = list_london$minimum_nights,
+  beds = list_london$beds,
   city = "London"
 )
 
@@ -71,7 +77,7 @@ subset_list_paris <- data.frame(
   room_type = list_paris$room_type,
   price = list_paris$price,
   minimum_nights = list_paris$minimum_nights,
-  
+  beds = list_paris$beds,
   city = "Paris")
 
 subset_list_rome <- data.frame(
@@ -82,16 +88,53 @@ subset_list_rome <- data.frame(
   room_type = list_rome$room_type,
   price = list_rome$price,
   minimum_nights = list_rome$minimum_nights,
+  beds = list_rome$beds,
   city = "Rome")
 
 total_list <- rbind(subset_list_ams, subset_list_london, subset_list_paris, subset_list_rome)
 
 ```
 
-***Transformation***
-**Summary statistics on the price of the cities for the listings dataset**
 
-```{r echo=TRUE}
+```{r, echo=FALSE}
+##subset lists of the city from the calendar data
+subset_cal_ams <- data.frame(
+  listing_id = cal_ams$listing_id,
+  date = cal_ams$date,
+  available = cal_ams$available,
+  city = "Amsterdam"
+)
+
+subset_cal_london <- data.frame(
+  listing_id = cal_london$listing_id,
+  date = cal_london$date,
+  available = cal_london$available,
+  city = "London"
+)
+
+subset_cal_paris <- data.frame(
+  listing_id = cal_paris$listing_id,
+  date = cal_paris$date,
+  available = cal_paris$available,
+  city = "Paris"
+)
+
+subset_cal_rome <- data.frame(
+  listing_id = cal_rome$listing_id,
+  date = cal_rome$date,
+  available = cal_rome$available,
+  city = "Rome"
+)
+
+total_cal <- rbind(subset_cal_ams, subset_cal_london, subset_cal_paris, subset_cal_rome)
+
+```
+
+
+<!--Output-->
+<!--Table outputs-->
+**Summary statistics on the price of the cities for the listings dataset**
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
 prices_cities <- total_list %>%
   select ("price", "city")
 
@@ -106,76 +149,19 @@ price_summary
 
 ```
 
-
 **Summary statistics for beds per city**
-```{r, echo=FALSE}
-# Create a list of the cities
-city_names <- c('Amsterdam', 'London', 'Paris', 'Rome')
-cities_list <- list(list_ams, list_london, list_paris, list_rome)
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+beds_cities <- total_list %>%
+  select("beds", "city")
 
-# Loop
-for (i in 1:length(cities_list)) {
-  cat("Summary statistics for", city_names[i], "\n")
-  cat("Beds\n")
-  print(summary(cities_list[[i]]$beds))
-}
+beds_summary <- data.table(na.omit(beds_cities))
+beds_summary <- beds_summary[, .(min_beds = min(beds), mean_beds = mean(beds), 
+                                   max_beds = max(beds)), by = city]
+
+beds_summary
 ```
 
-
-**Subset of the calendar dataset for all cities**
-```{r, echo=FALSE}
-##subset lists of the city from the calendar data
-subset_cal_ams <- data.frame(
-  listing_id = cal_ams$listing_id,
-  date = cal_ams$date,
-  available = cal_ams$available,
-  adjusted_price = cal_ams$adjusted_price,
-  price = cal_ams$price,
-  minimum_nights = cal_ams$minimum_nights,
-  maximum_nights = cal_ams$maximum_nights,
-  city = "Amsterdam"
-)
-
-subset_cal_london <- data.frame(
-  listing_id = cal_london$listing_id,
-  date = cal_london$date,
-  available = cal_london$available,
-  adjusted_price = cal_london$adjusted_price,
-  price = cal_london$price,
-  minimum_nights = cal_london$minimum_nights,
-  maximum_nights = cal_london$maximum_nights,
-  city = "London"
-)
-
-subset_cal_paris <- data.frame(
-  listing_id = cal_paris$listing_id,
-  date = cal_paris$date,
-  available = cal_paris$available,
-  adjusted_price = cal_paris$adjusted_price,
-  price = cal_paris$price,
-  minimum_nights = cal_paris$minimum_nights,
-  maximum_nights = cal_paris$maximum_nights,
-  city = "Paris"
-)
-
-subset_cal_rome <- data.frame(
-  listing_id = cal_rome$listing_id,
-  date = cal_rome$date,
-  available = cal_rome$available,
-  adjusted_price = cal_rome$adjusted_price,
-  price = cal_rome$price,
-  minimum_nights = cal_rome$minimum_nights,
-  maximum_nights = cal_rome$maximum_nights,
-  city = "Rome"
-)
-
-total_cal <- rbind(subset_cal_ams, subset_cal_london, subset_cal_paris, subset_cal_rome)
-
-```
-
-***Output***
-
-**Number of available rooms per city between the 5th of December 2022 and the 4th of December 2023** 
+**Airbnb listings availability per city between the 5th of December 2022 and the 4th of December 2023** 
 ```{r, echo=FALSE}
 total_cal <- total_cal %>% 
   mutate(available = ifelse(available == TRUE, "available", available)) %>%
@@ -189,31 +175,31 @@ table(total_cal$available,  total_cal$city)
 table(total_list$room_type, total_list$city)
 ```
 
-**Percentage number of rooms in Amsterdam**
+**Room types in Amsterdam (%)**
 ```{r, echo=FALSE}
 Amsterdam <- table(list_ams$room_type)
 prop.table(Amsterdam)
 ```
 
-**Percentage number of rooms in London**
+**Room types in London (%)**
 ```{r, echo=FALSE}
 London <- table(list_london$room_type)
 prop.table(London)
 ```
 
-**Percent number of rooms in Paris**
+**Room types in Paris (%)**
 ```{r, echo=FALSE}
 Paris <- table(list_paris$room_type)
 prop.table(Paris)
 ```
 
-**Percent number of rooms in Rome**
+**Room types in Rome (%)**
 ```{r, echo=FALSE}
 Rome <- table(list_rome$room_type)
 prop.table(Rome)
 ```
 
-
+<!--Piechart outputs-->
 ```{r, echo=FALSE}
 piepercent_ams<- round(100*table(list_ams$room_type)/sum(table(list_ams$room_type)), 1)
 pie(table(list_ams$room_type), labels = paste0(piepercent_ams, "%"), main = "Airbnb room types offered in Amsterdam", col = rainbow(length(table(list_ams$room_type)), s = 0.5))
@@ -245,6 +231,7 @@ legend("topright", c("Entire home/apt","Hotel room","Private room","Shared room"
        fill = rainbow(length(table(list_rome$room_type)), s = 0.5))
 ```
 
+<!--Bargraph outputs-->
 ```{r, echo=FALSE}
 ggplot(list_ams, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
