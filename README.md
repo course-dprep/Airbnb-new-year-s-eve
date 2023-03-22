@@ -68,13 +68,9 @@ The directory structure is as follow:
 |       ├── price_analysis.R
 |       ├── makefile
 |       ├── Report.Rmd
+|       ├── Report.pdf
 |   ├── data-preparation
-|       ├── Install packages.R
-<<<<<<< HEAD
-|       ├── New_Years.Rmd
-=======
 |       ├── data_exploration.Rmd
->>>>>>> 83f766d49a7d2cb01a40082d000b05815d0e6d6f
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
@@ -87,6 +83,7 @@ The directory structure is as follow:
 |       ├── output
 |       ├── temp
 ├── .gitignore
+├── Install packages.R
 ├── README.md
 └── makefile
 
@@ -150,6 +147,7 @@ Alternatively, the scripts and files might be executed in the following order:
 4.	Explore data: ../../src/data-preparation/data_exploration.Rmd
 5.	Booked analysis: ../../src/analysis/booked_analysis.R
 6.	Price analysis: ../../src/analysis/price_analysis.R
+7.	Final report: ../../src/analysis/Report.Rmd
 
 ## More resources
 * Insideairbnb (http://insideairbnb.com/get-the-data/)
