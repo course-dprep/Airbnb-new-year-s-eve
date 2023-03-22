@@ -71,6 +71,7 @@ The directory structure is as follow:
 |       ├── Report.pdf
 |   ├── data-preparation
 |       ├── data_exploration.Rmd
+|       ├── data_exploration.pdf
 |       ├── clean_data.R
 |       ├── download_data.R
 |       ├── makefile
