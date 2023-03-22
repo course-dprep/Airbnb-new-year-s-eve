@@ -3,8 +3,8 @@ title: "Airbnb New Year's Eve"
 author: "Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai, Hilal Nur Turer"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -25,15 +25,15 @@ tinytex::install_tinytex(force = TRUE)
 
 ***Introduction***
   
-In order to answer our research questions, we used data from InsideAirbnb to collect listing- and calendar data from four major European cities, namely London, Paris, Amsterdam and Rome. After extracting the data sets for each city, we cleaned these data to make sure columns with missing data were removed and variables related to the analysis were included. Lastly, the data sets from the individual cities were also merged into one complete data set.
+To answer our research questions, we used data from InsideAirbnb to collect listings and calendar data from four major European cities: London, Paris, Amsterdam, and Rome. After extracting the datasets for each city, the data was cleaned by converting the missing values in dummy variables to zero (0), removing the rows with missing values from the remaining variables, and by excluding variables that are unrelated to the analysis. Lastly, we merged the datasets from the individual cities into one complete dataset.
 
-In this report, we provide a description of variables used in the analysis, including relevant summary statistics. Furthermore, the report includes several plots to visualize the key variables from the analysis. The main section of the report contains two analyses that answer our research questions, where the results are also discussed. Ultimately, a conclusion on the effect of New Year's Eve on Airbnb listings is drawn based on these analyses.
+This report provides a description of the variables used in the analysis, including relevant summary statistics. Furthermore, the report includes several plots to visualize the key variables from the analysis. The main section of the report contains two analyses that answer our research questions, with the results also discussed. Ultimately, we draw a conclusion on the effect of New Year's Eve on Airbnb listings based on these analyses.
 
 The following questions will be answered:
 
-1. What is the effect of New Year’s eve on the price of Airbnb listings in capital cities in Europe?
+1. What is the effect of New Year’s Eve on the price of Airbnb listings in capital cities in Europe?
 
-2. Does the New Year’s Eve increase the likelihood of booking on Airbnb in capital cities in Europe?
+2. Does New Year’s Eve increase the likelihood of booking on Airbnb in capital cities in Europe?
 
 ***Dependent Variable Descriptive***
 
@@ -42,15 +42,15 @@ The following questions will be answered:
 load('../../gen/analysis/output/mean_price.RData')
 ```
 
-In order to analyze the influence of New Year's Eve on the prices of Airbnb accommodations, we used the metric variable 'price'. Besides, we created a dummy variable 'newyearseve', which takes the value of 1 on New Year’s Eve and 0 on any other day. The average price of an Airbnb listing from the whole data set is `r mean_price`.
+In order to analyze the influence of New Year's Eve on the prices of Airbnb accommodations, we used the metric variable 'price'. In addition, we created a dummy variable 'newyearseve', which takes the value of 1 on New Year’s Eve and 0 on any other day. The average price of an Airbnb listing from the whole data set is `r mean_price`.
 
-During analysis, We compare the price on New Year’s Eve with the price on days 5 days before and after the celebration. The results show a P-value less than 0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. However, when we look into the outcome of this comparison in the boxplot below, we can find that the difference between the averages price of accommodations on New Year’s Eve and 'usual' days is actually very small.
+During analysis, We compare the price on New Year’s Eve with the price on days 5 days before and after the celebration. The results show a P-value of less than 0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. However, when we look into the outcome of this comparison in the boxplot below, we can find that the difference between the averages price of accommodations on New Year’s Eve and 'usual' days is actually very small.
 
 ```{r echo=FALSE}
 knitr::include_graphics('../../gen/analysis/output/price_newyearseve_boxplot.pdf')
 ```
 
-On the other hand, in comparing the cities with the boxplot below, we can conclude that the average price for Airbnb accommodations is the highest in Amsterdam on New Year's Eve, while the average price is for Airbnb accommodations is the lowest in London.
+On the other hand, when we compare the cities using the boxplot below, it can be concluded that the average price for Airbnb accommodations is highest in Amsterdam on New Year's Eve, while the average price for Airbnb accommodations is lowest in London.
 
 ```{r echo=FALSE}
 knitr::include_graphics('../../gen/analysis/output/price_per_city_boxplot.pdf')
@@ -64,9 +64,9 @@ load('../../gen/analysis/output/mean_booked.RData')
 
 To analyse the impact of New Year's Eve on the booking availability, we created a dummy variable for booked accommodations. The dummy variable "booked" consists of two categories, where the value of 1 means that an accommodation has been booked while the value of 0 means that an accommodation has not been booked. 
 
-Looking at the mean `r mean_booked` in the data set, we can conclude that Airbnbs are more booked than not booked in the chosen period of this data set (26 December - 5 January). This conclusion can be verified by printing out the table.
+Looking at the mean `r mean_booked` in the data set, we can infer that Airbnbs were more frquently booked (than not booked) during the chosen period of the data set (26th of December - 5th of January). This conclusion can be corroborated by printing out the table.
 
-On the other hand, 87.8% of Airbnbs were booked in London, Paris, Amsterdam and Rome on New Year's Eve, while only 80.3% of the Airbnbs were booked on usual days. Therefore, we can conclude that there are more accommodations booked via Airbnb during New Year's Eve, but the percentage is only slightly increased.
+Furthermore, 87.8% of Airbnbs were booked in London, Paris, Amsterdam and Rome on New Year's Eve, while only 80.3% of the Airbnbs were booked on usual days. Therefore, we can conclude that there are more accommodations booked via Airbnb during New Year's Eve, but the percentage is only slightly increased.
 
 ***Analysis***
 
@@ -74,9 +74,9 @@ On the other hand, 87.8% of Airbnbs were booked in London, Paris, Amsterdam and 
 
 This analysis will answer the following question: "What is the effect of New Year’s eve on the price of Airbnb listings?" 
 
-In order to answer this question, we choose to run a linear regression as we are going to examine the relationship between a metric dependent variable and a metric independent variables. In addition, we also want to observe what is the effect of different cities, which are included as dummy variables, on the relationship between New Year's Eve and price.
+To address this question, we conducted a linear regression analysis since we are exploring the relationship between a metric dependent variable and a metric independent variables. In addition, we also want to observe what is the effect of different cities, which are included as dummy variables, on the relationship between New Year's Eve and price.
 
-First, we look at the linear regression for main effect. The result shows a P-value which is less than 0.05. With a significance of 0.05, we can state that there is a significant relationship between New Year’s Eve and prices of all Airbnb listings we studied. Besides, we ran the linear regression for 4 cities separately and the results also show P-values of less than 0.05 which represent a significant relationship as well. 
+Foremost, we examined the linear regression for the main effect. The result shows a P-value which is less than 0.05. With a significance of 0.05 we can state that there is a significant relationship between New Year’s Eve and prices of all Airbnb listings we studied. Moreover, we ran the linear regression for the four cities separately and the results also show P-values of less than 0.05 which represent a significant relationship as well. 
 
 As below, we can also see that the average price in different cities is higher on New Year's Eve compared to the usual days.
 
@@ -88,13 +88,14 @@ knitr::include_graphics('../../gen/analysis/output/rome_mean_price_graph.pdf')
 
 ```
 
-Lastly, we include the interaction between New Year’s Eve and the different cities. The p-value is less than 0.05 when the cities effect is included in the relationship. Therefore we can conclude that null hypothesis can be rejected. The price will significantly be affected by New Year’s Eve in the cities we studied.     
+Lastly, we included the interaction between New Year’s Eve and the different cities. The p-value is less than 0.05 when the cities effect is included in the relationship. Therefore we can conclude that null hypothesis can be rejected. The price will significantly be affected by New Year’s Eve in the cities we studied.     
 
 **Bookings analysis**
 
-This analysis will answer the following question: "Does New Year’s Eve increase the likelihood of booking on Airbnb in capital cities in Europe?" A logistic regression is performed here, as we set dependent variable "booked" as dummy variable. 
+This analysis will answer the following question: "Does New Year’s Eve increase the likelihood of Airbnb bookings in capital cities in Europe?" 
+A logistic regression is performed here, as we set dependent variable "booked" as a dummy variable. 
 
-First, we performed a logistic regression for all cities combined. The logistic regression gave us a P-value of less than 0.05. Therefore, with a significance of 0.05, the H0 can be rejected. A significant relationship between New Year’s Eve and the likelihood of booking an Airbnb has been proved. When looking at the exponents of the logistic regression, we can also conclude that on New Year’s Eve, the odds of a Airbnb being booked, increased with 1.77.
+Foremost, we performed a logistic regression for all cities combined. The logistic regression analysis showed a P-value of less than 0.05. Therefore, with a significance of 0.05, the H0 can be rejected. A significant relationship between New Year’s Eve and the likelihood of booking an Airbnb cannot be rejected. When looking at the exponents of the logistic regression, we can also conclude that on New Year’s Eve, the odds of a Airbnb being booked, increased with 1.77.
 
 ```{r include=FALSE}
 complete_data <- read_csv("../../gen/data-preparation/output/complete_data.csv") 
@@ -126,4 +127,4 @@ stargazer(booked_logistic,
 
 ***Conclusion***
   
-Overall, to answer our research questions, both H0 have been rejected by a p-value < 0.05. The significant relationship has been found between New Year's Eve and the prices of Airbnb listings. Besides, a significant relationship has also been found between New Year's Eve and the chances of an Airbnb listing being booked.
+Overall, to answer our research questions, both H0 have been rejected by a p-value < 0.05. The significant relationship has been found between New Year's Eve and the prices of Airbnb listings. In addition, a significant relationship has also been found between New Year's Eve and the chance of an Airbnb listing being booked.
