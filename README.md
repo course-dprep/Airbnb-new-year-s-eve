@@ -141,7 +141,7 @@ make clean
 
 Alternatively, the scripts and files might be executed in the following order:
 
-1.	Install packages: ../../src/data-preparation/Install_packages.R
+1.	Install packages: ../../Install_packages.R
 2.	Download data: ../../src/data-preparation/download_data.R
 3.	Clean data: ../../src/data-preparation/clean_data.R
 4.	Explore data: ../../src/data-preparation/data_exploration.Rmd
