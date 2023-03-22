@@ -46,7 +46,7 @@ This research project gives valuable insights in the prices and availablity of A
 
 **Price**: H1: New Year’s Eve influences the prices of Airbnb listings. 
 
-The results show a P-value of <0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, the H0 can be rejected. Therefore, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. The estimate of New Year's Eve is positive for the complete datasets and for the cities seperate. This means that we can concluded that prices will be higher during New Year's Eve. Moreover, it is striking that the prices of Airbnbs in Paris, London and Rome are comparable. On the other hand, prices in Amsterdam are significantly higher in the same timeperiod.
+The results show a P-value of <0.01 for both the complete model and the different cities separate. Therefore, with a significance of 0.05, the H0 can be rejected. Therefore, we can state that there is a significant relationship between New Year’s Eve and prices of Airbnb listings. The estimate of New Year's Eve is positive for the complete datasets and for the cities seperate. This means that we can concluded that prices will be higher during New Year's Eve. Moreover, it is striking that the prices of Airbnbs in Paris, London, and Rome are comparable. On the other hand, prices in Amsterdam are significantly higher in the same timeperiod.
 
 **Bookings**: H1: New Year’s Eve influences the amount of booked Airbnbs. 
 
@@ -54,9 +54,9 @@ The results from the logistic regression show a P-value<0.01 for both the comple
 
 ## Conclusion
 
-In answering the research question, it was found that there is a significant relationship between New Year's Eve and the prices of Airbnb listings. This applies for listings in Rome, London, Paris and Amsterdam, together and for the cities individually. We found that the average price in different cities is higher on New Year's Eve compared to the usual days.
+In answering the research question, it was found that there is a significant relationship between New Year's Eve and the prices of Airbnb listings. This applies for listings in Rome, London, Paris, and Amsterdam, together and for the cities individually. We found that the average price in different cities is higher on New Year's Eve compared to the usual days.
 
-Furthermore, a significant relationship between New Year's Eve and the likelihood that an Airbnb listing would be booked has been found. The chances of a listing being booked in Rome, London Paris and Amsterdam increases on New Year’s Eve. 
+Furthermore, a significant relationship between New Year's Eve and the likelihood that an Airbnb listing would be booked has been found. The chances of a listing being booked in Rome, London, Paris, and Amsterdam increases on New Year’s Eve. 
 
 ## Repository overview
 
@@ -164,7 +164,6 @@ This repository was created as a part of the Data Preparation and Workflow Manag
 
 
 ## Notes
-* `make clean` removes all unnecessary temporary files. 
 * Tested under Linux Mint (should work in any linux distro, as well as on Windows and Mac) 
 * IMPORTANT: In `makefile`, when using `\` to split code into multiple lines, no space should follow `\`. Otherwise Gnu make aborts with error 193. 
 * Many possible improvements remain. Comments and contributions are welcome!
