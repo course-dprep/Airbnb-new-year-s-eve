@@ -37,7 +37,6 @@ summary(sample_data$price)
 mean_price <- mean(complete_data$price)
 mean_price_sample <- mean(sample_data$price)
 save(mean_price, file='../../gen/analysis/output/mean_price.RData')
-histogram_prices <- hist(sample_data$price, xlab = 'price in €',ylab = 'numbers of Airbnb') 
 
 # Descriptive of new years eve
 summary(sample_data$newyearseve)
