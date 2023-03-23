@@ -7,6 +7,18 @@ library(dplyr)
 library(tidyverse)
 library(stargazer)
 
+## INPUT ##
+# Import the complete data 
+complete_data <- read_csv("../../gen/data-preparation/output/complete_data.csv")
+
+# Import the data per cities
+cities <- c("rome", "paris", "ams", "london")
+
+for (city in cities) {
+  file_name <- paste0("complete_data_", city, ".csv")
+  assign(paste0("complete_data_", city), read_csv((paste0("../../gen/data-preparation/output/", "complete_data_",city, ".csv"))))
+}
+
 ## TRANSFORMATION ##
 # Random sampling 10% of dataset#
 sample_data <- complete_data[sample(nrow(complete_data),83924),]
