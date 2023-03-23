@@ -73,9 +73,7 @@ for(city in cities){
 
 # Add city_dum variable in calendar
 for (city in cities) {
-  calendar <- get(paste0("calendar_", city, "_filtered3"))
-  calendar[[paste0(city, "_dum")]] <- city
-  assign(paste0("calendar_", city, "_filtered3"), calendar)
+  assign(paste0("calendar_", city, "_filtered3"), `[<-`(get(paste0("calendar_", city, "_filtered3")), paste0(city, "_dum"), value = city))
 }
 
 # Add city variable in listing
@@ -88,9 +86,8 @@ list_rome_filtered$city <- "Rome"
 merged_calendar <- bind_rows(calendar_london_filtered3, calendar_paris_filtered3, calendar_ams_filtered3, calendar_rome_filtered3)
 
 # City_dum as dummy variable
-for (i in seq_along(cities)) {
-  city <- cities[i]
-  merged_calendar[[paste0(city, "_dum")]] <- ifelse(merged_calendar[[paste0(city, "_dum")]] == city, 1, 0)
+for (city in cities) {
+  merged_calendar[, paste0(city, "_dum")] <- ifelse(merged_calendar[, paste0(city, "_dum")] == city, 1, 0)
 }
 
 # Set NA in city_dum column as 0
