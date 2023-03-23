@@ -22,7 +22,8 @@ sample_data_rome <- complete_data_rome[sample(nrow(complete_data_rome), sample_s
 
 # Descriptive of price
 summary(sample_data$price)
-mean_price <- mean(sample_data$price)
+mean_price <- mean(complete_data$price)
+mean_price_sample <- mean(sample_data$price)
 save(mean_price, file='../../gen/analysis/output/mean_price.RData')
 histogram_prices <- hist(sample_data$price, xlab = 'price in €',ylab = 'numbers of Airbnb') 
 
@@ -59,7 +60,6 @@ price_per_city_boxplot <- ggplot(sample_data, aes(x=newyearseve, y=price, fill=c
   facet_wrap(~newyearseve, scale="free") +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
-
 
 # Create graph with mean price for London
 london_mean_price_graph <- complete_data_london %>% 
@@ -101,8 +101,8 @@ for (city in cities) {
 plot_obj <- get(paste0(city,"_mean_price_graph"))
 file_name <- paste0(city,"_mean_price_graph", ".pdf")
 file_path <- paste("../../gen/analysis/output/", file_name, sep="")
-ggsave(file_path, plot = plot_obj,width=2.25, height=2.25)
+ggsave(file_path, plot = plot_obj,width=3, height=3)
 }
-ggsave(plot = price_newyearseve_boxplot, filename = "../../gen/analysis/output/price_newyearseve_boxplot.pdf",width=3.5, height=3.5)
-ggsave(plot = price_per_city_boxplot, filename = "../../gen/analysis/output/price_per_city_boxplot.pdf",width=3.5, height=3.5)
+ggsave(plot = price_newyearseve_boxplot, filename = "../../gen/analysis/output/price_newyearseve_boxplot.pdf",width=4.5, height=4.5)
+ggsave(plot = price_per_city_boxplot, filename = "../../gen/analysis/output/price_per_city_boxplot.pdf",width=4.5, height=4.5)
 save(price_linear, price_cities_linear, price_cities_linear2, file='../../gen/analysis/output/model_results.RData') 
