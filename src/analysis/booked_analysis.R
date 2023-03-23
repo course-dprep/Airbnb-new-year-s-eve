@@ -57,6 +57,7 @@ booked_cities_logistic <- lapply(cities, function(city) {
 })
 
 ## OUTPUT ##
+save(booked_logistic, file='../../gen/analysis/output/booked_logistic.RData')
 stargazer(booked_logistic, apply.coef=exp, apply.se = exp, type="html", title="Effect of New Years Eve on Number of Bookings of Airbnb Listings",
           dep.var.caption = "Number of bookings",
           dep.var.labels="",

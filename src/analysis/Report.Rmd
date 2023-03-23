@@ -3,8 +3,8 @@ title: "Airbnb New Year's Eve"
 author: "Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai, Hilal Nur Turer"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -97,13 +97,8 @@ A logistic regression is performed here, as we set dependent variable "booked" a
 
 Foremost, we performed a logistic regression for all cities combined. The logistic regression analysis showed a P-value of less than 0.05. Therefore, with a significance of 0.05, the H0 can be rejected. A significant relationship between New Year’s Eve and the likelihood of booking an Airbnb cannot be rejected. When looking at the exponents of the logistic regression, we can also conclude that on New Year’s Eve, the odds of a Airbnb being booked, increased with 1.77.
 
-```{r include=FALSE}
-complete_data <- read_csv("../../gen/data-preparation/output/complete_data.csv") 
-```
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-booked_logistic <- glm(booked ~ newyearseve, complete_data, family = binomial)
-exp(booked_logistic$coefficients)
+```{r echo=FALSE}
+load('../../gen/analysis/output/booked_logistic.RData')
 ```
 
 ```{r table 2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
