@@ -1,11 +1,10 @@
 ---
 title: "New Year's Eve Data Exploration"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 message: FALSE
 warning: FALSE
-
 date: "2023-03-01"
 ---
 
@@ -28,7 +27,7 @@ library(data.table)
 <!--Load the data-->
 ```{r include=FALSE}
 # Define the list of cities and file names
-cities <- c("ams", "london", "paris", "rome")
+cities <- c("Ams", "London", "Paris", "Rome")
 filenames <- paste0("listings-", cities, ".csv.gz")
 
 # Loop through each city and read in the data
@@ -45,88 +44,49 @@ for (i in seq_along(cities)) {
 <!--subset lists of the city from the listing data-->
 ```{r, echo=FALSE}
 #subset lists of the city from the listing data
-subset_list_ams <- data.frame(
-  id = list_ams$id,
-  host_id = list_ams$host_id,
-  host_location = list_ams$host_location,
-  neighbourhood = list_ams$neighbourhood,
-  room_type = list_ams$room_type,
-  price = list_ams$price,
-  minimum_nights = list_ams$minimum_nights,
-  beds = list_ams$beds,
-  city = "Amsterdam"
-)
+subset_lists <- list()
 
-subset_list_london <- data.frame(
-  id = list_london$id,
-  host_id = list_london$host_id,
-  host_location= list_london$host_location,
-  neighbourhood = list_london$neighbourhood,
-  room_type = list_london$room_type,
-  price = list_london$price,
-  minimum_nights = list_london$minimum_nights,
-  beds = list_london$beds,
-  city = "London"
-)
+# Loop through each city and subset the data
+for (i in seq_along(cities)) {
+  city <- cities[i]
+  city_list <- get(paste0("list_", city))
+  subset_lists[[i]] <- data.frame(
+    id = city_list$id,
+    host_id = city_list$host_id,
+    host_location = city_list$host_location,
+    neighbourhood = city_list$neighbourhood,
+    room_type = city_list$room_type,
+    price = city_list$price,
+    minimum_nights = city_list$minimum_nights,
+    beds = city_list$beds,
+    city = city
+  )
+}
 
-subset_list_paris <- data.frame(
-  id = list_paris$id,
-  host_id = list_paris$host_id,
-  host_location = list_paris$host_location,
-  neighbourhood = list_paris$neighbourhood,
-  room_type = list_paris$room_type,
-  price = list_paris$price,
-  minimum_nights = list_paris$minimum_nights,
-  beds = list_paris$beds,
-  city = "Paris")
-
-subset_list_rome <- data.frame(
-  id = list_rome$id,
-  host_id = list_rome$host_id,
-  host_location = list_rome$host_location,
-  neighbourhood = list_rome$neighbourhood,
-  room_type = list_rome$room_type,
-  price = list_rome$price,
-  minimum_nights = list_rome$minimum_nights,
-  beds = list_rome$beds,
-  city = "Rome")
-
-total_list <- rbind(subset_list_ams, subset_list_london, subset_list_paris, subset_list_rome)
+# Combine the subset data frames into one data frame
+total_list <- do.call(rbind, subset_lists)
 
 ```
 
 
 ```{r, echo=FALSE}
 ##subset lists of the city from the calendar data
-subset_cal_ams <- data.frame(
-  listing_id = cal_ams$listing_id,
-  date = cal_ams$date,
-  available = cal_ams$available,
-  city = "Amsterdam"
-)
+subset_cals <- list()
 
-subset_cal_london <- data.frame(
-  listing_id = cal_london$listing_id,
-  date = cal_london$date,
-  available = cal_london$available,
-  city = "London"
-)
+# Loop through each city and subset the data
+for (i in seq_along(cities)) {
+  city <- cities[i]
+  city_cal <- get(paste0("cal_", city))
+  subset_cals[[i]] <- data.frame(
+    listing_id = city_cal$listing_id,
+    date = city_cal$date,
+    available = city_cal$available,
+    city = city
+  )
+}
 
-subset_cal_paris <- data.frame(
-  listing_id = cal_paris$listing_id,
-  date = cal_paris$date,
-  available = cal_paris$available,
-  city = "Paris"
-)
-
-subset_cal_rome <- data.frame(
-  listing_id = cal_rome$listing_id,
-  date = cal_rome$date,
-  available = cal_rome$available,
-  city = "Rome"
-)
-
-total_cal <- rbind(subset_cal_ams, subset_cal_london, subset_cal_paris, subset_cal_rome)
+# Combine the subset data frames into one data frame
+total_cal <- do.call(rbind, subset_cals)
 
 ```
 
@@ -177,63 +137,63 @@ table(total_list$room_type, total_list$city)
 
 **Room types in Amsterdam (%)**
 ```{r, echo=FALSE}
-Amsterdam <- table(list_ams$room_type)
+Amsterdam <- table(list_Ams$room_type)
 prop.table(Amsterdam)
 ```
 
 **Room types in London (%)**
 ```{r, echo=FALSE}
-London <- table(list_london$room_type)
+London <- table(list_London$room_type)
 prop.table(London)
 ```
 
 **Room types in Paris (%)**
 ```{r, echo=FALSE}
-Paris <- table(list_paris$room_type)
+Paris <- table(list_Paris$room_type)
 prop.table(Paris)
 ```
 
 **Room types in Rome (%)**
 ```{r, echo=FALSE}
-Rome <- table(list_rome$room_type)
+Rome <- table(list_Rome$room_type)
 prop.table(Rome)
 ```
 
 <!--Piechart outputs-->
 ```{r, echo=FALSE}
-piepercent_ams<- round(100*table(list_ams$room_type)/sum(table(list_ams$room_type)), 1)
-pie(table(list_ams$room_type), labels = paste0(piepercent_ams, "%"), main = "Airbnb room types offered in Amsterdam", col = rainbow(length(table(list_ams$room_type)), s = 0.5))
+piepercent_ams<- round(100*table(list_Ams$room_type)/sum(table(list_Ams$room_type)), 1)
+pie(table(list_Ams$room_type), labels = paste0(piepercent_ams, "%"), main = "Airbnb room types offered in Amsterdam", col = rainbow(length(table(list_Ams$room_type)), s = 0.5))
 legend("bottomleft", c("Entire home/apt","Hotel room","Private room","Shared room"), cex = 0.8,
-       fill = rainbow(length(table(list_ams$room_type)), s = 0.5))
+       fill = rainbow(length(table(list_Ams$room_type)), s = 0.5))
 ```
 
 
 ```{r, echo=FALSE}
-piepercent_london<- round(100*table(list_london$room_type)/sum(table(list_london$room_type)), 1)
-pie(table(list_london$room_type), labels = paste0(piepercent_london, "%"), main = "Airbnb room types offered in London", col = rainbow(length(table(list_london$room_type)), s = 0.5))
+piepercent_london<- round(100*table(list_London$room_type)/sum(table(list_London$room_type)), 1)
+pie(table(list_London$room_type), labels = paste0(piepercent_london, "%"), main = "Airbnb room types offered in London", col = rainbow(length(table(list_London$room_type)), s = 0.5))
 legend("bottomright", c("Entire home/apt","Hotel room","Private room","Shared room"), cex = 0.8,
-       fill = rainbow(length(table(list_london$room_type)), s = 0.5))
+       fill = rainbow(length(table(list_London$room_type)), s = 0.5))
 ```
 
 
 ```{r, echo=FALSE}
-piepercent_paris<- round(100*table(list_paris$room_type)/sum(table(list_paris$room_type)), 1)
-pie(table(list_paris$room_type), labels = paste0(piepercent_paris, "%"), main = "Airbnb room types offered in Paris", col = rainbow(length(table(list_paris$room_type)), s = 0.5))
+piepercent_paris<- round(100*table(list_Paris$room_type)/sum(table(list_Paris$room_type)), 1)
+pie(table(list_Paris$room_type), labels = paste0(piepercent_paris, "%"), main = "Airbnb room types offered in Paris", col = rainbow(length(table(list_Paris$room_type)), s = 0.5))
 legend("bottomleft", c("Entire home/apt","Hotel room","Private room","Shared room"), cex = 0.8,
-       fill = rainbow(length(table(list_paris$room_type)), s = 0.5))
+       fill = rainbow(length(table(list_Paris$room_type)), s = 0.5))
 ```
 
 
 ```{r, echo=FALSE}
-piepercent_rome<- round(100*table(list_rome$room_type)/sum(table(list_rome$room_type)), 1)
-pie(table(list_rome$room_type), labels = paste0(piepercent_rome, "%"), main = "Airbnb room types offered in Rome", col = rainbow(length(table(list_rome$room_type)), s = 0.5))
+piepercent_rome<- round(100*table(list_Rome$room_type)/sum(table(list_Rome$room_type)), 1)
+pie(table(list_Rome$room_type), labels = paste0(piepercent_rome, "%"), main = "Airbnb room types offered in Rome", col = rainbow(length(table(list_Rome$room_type)), s = 0.5))
 legend("topright", c("Entire home/apt","Hotel room","Private room","Shared room"), cex = 0.8,
-       fill = rainbow(length(table(list_rome$room_type)), s = 0.5))
+       fill = rainbow(length(table(list_Rome$room_type)), s = 0.5))
 ```
 
 <!--Bargraph outputs-->
 ```{r, echo=FALSE}
-ggplot(list_ams, aes(x = room_type)) +
+ggplot(list_Ams, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
   ggtitle("Amsterdam") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -243,7 +203,7 @@ ggplot(list_ams, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE}
-ggplot(list_london, aes(x = room_type)) +
+ggplot(list_London, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
   ggtitle("London") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -253,7 +213,7 @@ ggplot(list_london, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE}
-ggplot(list_paris, aes(x = room_type)) +
+ggplot(list_Paris, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
   ggtitle("Paris") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -263,7 +223,7 @@ ggplot(list_paris, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE}
-ggplot(list_rome, aes(x = room_type)) +
+ggplot(list_Rome, aes(x = room_type)) +
   geom_bar(aes(fill = room_type), position = "dodge") +
   ggtitle("Rome") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -273,7 +233,7 @@ ggplot(list_rome, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(list_ams, aes(x = room_type)) +
+ggplot(list_Ams, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Amsterdam") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -284,7 +244,7 @@ ggplot(list_ams, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(list_london, aes(x = room_type)) +
+ggplot(list_London, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("London") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -295,7 +255,7 @@ ggplot(list_london, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(list_paris, aes(x = room_type)) +
+ggplot(list_Paris, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Paris") +
   theme(plot.title = element_text(hjust = 0.5)) +
@@ -306,7 +266,7 @@ ggplot(list_paris, aes(x = room_type)) +
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-ggplot(list_rome, aes(x = room_type)) +
+ggplot(list_Rome, aes(x = room_type)) +
   geom_bar(aes(y = (..count..)/sum(..count..), fill = room_type), position = "dodge") +
   ggtitle("Rome") +
   theme(plot.title = element_text(hjust = 0.5)) +
