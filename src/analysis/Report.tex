@@ -1,0 +1,236 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Airbnb New Year's Eve},
+  pdfauthor={Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai, Hilal Nur Turer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Airbnb New Year's Eve}
+\author{Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai,
+Hilal Nur Turer}
+\date{maart 23, 2023}
+
+\begin{document}
+\maketitle
+
+\textbf{\emph{Introduction}}
+
+To answer our research questions, we used data from InsideAirbnb to
+collect listings and calendar data from four major European cities:
+London, Paris, Amsterdam, and Rome. After extracting the datasets for
+each city, the data was cleaned by converting the missing values in
+dummy variables to zero (0), removing the rows with missing values from
+the remaining variables, and by excluding variables that are unrelated
+to the analysis. Lastly, we merged the datasets from the individual
+cities into one complete dataset.
+
+This report provides a description of the variables used in the
+analysis, including relevant summary statistics. Furthermore, the report
+includes several plots to visualize the key variables from the analysis.
+The main section of the report contains two analyses that answer our
+research questions, with the results also discussed. Ultimately, we draw
+a conclusion on the effect of New Year's Eve on Airbnb listings based on
+these analyses.
+
+The following questions will be answered:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  What is the effect of New Year's Eve on the price of Airbnb listings
+  in capital cities in Europe?
+\item
+  Does New Year's Eve increase the likelihood of booking on Airbnb in
+  capital cities in Europe?
+\end{enumerate}
+
+\textbf{\emph{Dependent Variable Descriptive}}
+
+\textbf{Price}
+
+In order to analyze the influence of New Year's Eve on the prices of
+Airbnb accommodations, we used the metric variable `price'. In addition,
+we created a dummy variable `newyearseve', which takes the value of 1 on
+New Year's Eve and 0 on any other day. The average price of an Airbnb
+listing from the whole data set is 159.0026453.
+
+During analysis, We compare the price on New Year's Eve with the price
+on days 5 days before and after the celebration. The results show a
+P-value of less than 0.01 for both the complete model and the different
+cities separate. Therefore, with a significance of 0.05, we can state
+that there is a significant relationship between New Year's Eve and
+prices of Airbnb listings. However, when we look into the outcome of
+this comparison in the boxplot below, we can find that the difference
+between the averages price of accommodations on New Year's Eve and
+`usual' days is actually very small.
+
+\includegraphics{../../gen/analysis/output/price_newyearseve_boxplot.pdf}
+
+On the other hand, when we compare the cities using the boxplot below,
+it can be concluded that the average price for Airbnb accommodations is
+highest in Amsterdam on New Year's Eve, while the average price for
+Airbnb accommodations is lowest in London.
+
+\includegraphics{../../gen/analysis/output/price_per_city_boxplot.pdf}
+
+\textbf{Booked}
+
+To analyse the impact of New Year's Eve on the booking availability, we
+created a dummy variable for booked accommodations. The dummy variable
+``booked'' consists of two categories, where the value of 1 means that
+an accommodation has been booked while the value of 0 means that an
+accommodation has not been booked.
+
+Looking at the mean 0.8100522 in the data set, we can infer that Airbnbs
+were more frquently booked (than not booked) during the chosen period of
+the data set (26th of December - 5th of January). This conclusion can be
+corroborated by printing out the table.
+
+Furthermore, 87.8\% of Airbnbs were booked in London, Paris, Amsterdam
+and Rome on New Year's Eve, while only 80.3\% of the Airbnbs were booked
+on usual days. Therefore, we can conclude that there are more
+accommodations booked via Airbnb during New Year's Eve, but the
+percentage is only slightly increased.
+
+\textbf{\emph{Analysis}}
+
+\textbf{Price analysis}
+
+This analysis will answer the following question: ``What is the effect
+of New Year's eve on the price of Airbnb listings?''
+
+To address this question, we conducted a linear regression analysis
+since we are exploring the relationship between a metric dependent
+variable and a metric independent variables. In addition, we also want
+to observe what is the effect of different cities, which are included as
+dummy variables, on the relationship between New Year's Eve and price.
+
+Foremost, we examined the linear regression for the main effect. The
+result shows a P-value which is less than 0.05. With a significance of
+0.05 we can state that there is a significant relationship between New
+Year's Eve and prices of all Airbnb listings we studied. Moreover, we
+ran the linear regression for the four cities separately and the results
+also show P-values of less than 0.05 which represent a significant
+relationship as well.
+
+As below, we can also see that the average price in different cities is
+higher on New Year's Eve compared to the usual days.
+
+\includegraphics{../../gen/analysis/output/london_mean_price_graph.pdf}
+\includegraphics{../../gen/analysis/output/paris_mean_price_graph.pdf}
+\includegraphics{../../gen/analysis/output/ams_mean_price_graph.pdf}
+\includegraphics{../../gen/analysis/output/rome_mean_price_graph.pdf}
+
+Lastly, we included the interaction between New Year's Eve and the
+different cities. The p-value is less than 0.05 when the cities effect
+is included in the relationship. Therefore we can conclude that null
+hypothesis can be rejected. The price will significantly be affected by
+New Year's Eve in the cities we studied.
+
+\textbf{Bookings analysis}
+
+This analysis will answer the following question: ``Does New Year's Eve
+increase the likelihood of Airbnb bookings in capital cities in
+Europe?'' A logistic regression is performed here, as we set dependent
+variable ``booked'' as a dummy variable.
+
+Foremost, we performed a logistic regression for all cities combined.
+The logistic regression analysis showed a P-value of less than 0.05.
+Therefore, with a significance of 0.05, the H0 can be rejected. A
+significant relationship between New Year's Eve and the likelihood of
+booking an Airbnb cannot be rejected. When looking at the exponents of
+the logistic regression, we can also conclude that on New Year's Eve,
+the odds of a Airbnb being booked, increased with 1.77.
+
+\begin{table}[h] \centering 
+  \caption{Effect of New Years Eve on Number of Bookings of Airbnb Listings} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{Number of bookings} \\ 
+\cline{2-2} 
+\\[-1.8ex] &  \\ 
+ & Total \\ 
+\hline \\[-1.8ex] 
+ New Year's Eve & 1.765$^{*}$ \\ 
+  & (1.012) \\ 
+  Constant & 4.084$^{***}$ \\ 
+  & (1.003) \\ 
+ \hline \\[-1.8ex] 
+Observations & 839,236 \\ 
+Log Likelihood & $-$406,609.300 \\ 
+Akaike Inf. Crit. & 813,222.500 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+\textbf{\emph{Conclusion}}
+
+Overall, to answer our research questions, both H0 have been rejected by
+a p-value \textless{} 0.05. The significant relationship has been found
+between New Year's Eve and the prices of Airbnb listings. In addition, a
+significant relationship has also been found between New Year's Eve and
+the chance of an Airbnb listing being booked.
+
+\end{document}
