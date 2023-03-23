@@ -76,7 +76,7 @@ price_per_city_boxplot <- ggplot(sample_data, aes(x=newyearseve, y=price, fill=c
 london_mean_price_graph <- complete_data_london %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
-  ggplot(aes(x = date, y = mean_price,)) + ggtitle("Avarage Price in London")+
+  ggplot(aes(x = date, y = mean_price,)) + ggtitle("Average Price in London")+
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_london$price), color="black")
 
@@ -84,7 +84,7 @@ london_mean_price_graph <- complete_data_london %>%
 paris_mean_price_graph <- complete_data_paris %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
-  ggplot(aes(x = date, y = mean_price)) + ggtitle("Avarage Price in Paris")+
+  ggplot(aes(x = date, y = mean_price)) + ggtitle("Average Price in Paris")+
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_paris$price), color="black")
 
@@ -92,7 +92,7 @@ paris_mean_price_graph <- complete_data_paris %>%
 rome_mean_price_graph <- complete_data_rome %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
-  ggplot(aes(x = date, y = mean_price)) + ggtitle("Avarage Price in Rome")+
+  ggplot(aes(x = date, y = mean_price)) + ggtitle("Average Price in Rome")+
   geom_line(color = 'blue') + 
   geom_hline(yintercept = mean(complete_data_rome$price), color="black")
 
@@ -100,7 +100,7 @@ rome_mean_price_graph <- complete_data_rome %>%
 ams_mean_price_graph <- complete_data_ams %>% 
   group_by(date) %>%
   summarize(mean_price = mean(price)) %>%
-  ggplot(aes(x = date, y = mean_price)) + ggtitle("Avarage Price in Amsterdam")+
+  ggplot(aes(x = date, y = mean_price)) + ggtitle("Average Price in Amsterdam")+
   geom_line(color = 'blue') +  
   geom_hline(yintercept = mean(complete_data_ams$price), color="black")
 
