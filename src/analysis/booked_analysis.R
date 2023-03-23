@@ -40,7 +40,6 @@ shapiro.test(complete_data_sample)
 booked_logistic <- glm(booked ~ newyearseve, complete_data, family = binomial)
 summary(booked_logistic)
 exp(booked_logistic$coefficients)
-histogram_total_booked <- hist(complete_data$booked, xlab = 'booked') 
 
 # Model fit of total bookings 
 booked_logistic_chisq <- booked_logistic$null.deviance-booked_logistic$deviance 
