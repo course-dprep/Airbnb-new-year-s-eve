@@ -1,7 +1,7 @@
 ---
 title: "Airbnb New Year's Eve"
 author: "Fleur Le Mire, Mariëlla van Erve, Nishtha Staice, Yi Ting Tsai, Hilal Nur Turer"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document: default
   html_document: default
