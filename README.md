@@ -79,10 +79,8 @@ The directory structure is as follow:
 ├── gen
 |   ├── analysis
 |       ├── output
-|       ├── temp
 |   ├── data-preparation      
 |       ├── output
-|       ├── temp
 ├── .gitignore
 ├── Install packages.R
 ├── README.md
